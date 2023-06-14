@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        1. З клавіатури вводяться імена двох дітей та кількість у них цукерок.
+        Вивести не екран ім’я тієї дитини,
+        у якої кількість цукерок є більшою, або вивести, що кількість однакова.
+    </h2>
+    <script>
+        let firstChildName = prompt('first child name')
+        let secondChildName = prompt('second child name')
+        let numberCandiesFirstChild = parseInt(prompt('the number of candies of the first child'))
+        let numberCandiesSecondChild = parseInt(prompt('the number of candies of the second child'))
+        if (numberCandiesFirstChild > numberCandiesSecondChild)
+            alert(`більшк цукерків у ${firstChildName}`)
+        else
+            alert(`більшк цукерків у ${secondChildName}`)
+    </script>
+</body>
+
+</html>
