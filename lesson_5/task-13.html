@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 13 </h1>
+    <h2>
+        13. Морський бій.
+        Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M.
+        Маючи К снарядів користувач намагається потопити корабель.
+
+    </h2>
+    <script>
+        // let fieldX = parseInt(prompt('Введіть ширину поля у клітинках'))
+        // let fieldY = parseInt(prompt('Введіть висоту поля у клітинках'))
+        // let shellsNumber = parseInt(prompt('введіть кількість снарядів'))
+        // let fieldSize = fieldX * fieldY;
+        // let shipPosistionX = 1 + Math.floor(Math.random() * fieldSize)
+        // let shipPosistionY = 1 + Math.floor(Math.random() * fieldSize)
+        // alert(shipPosistionX)
+        // alert(shi pPosistionY)
+        // for (let i = 0; i < Infinity; i++) {
+        //     let userShotX = parseInt(prompt(`Введіть координату X   пострілу до ${fieldSize}`))
+        //     let userShotY = parseInt(prompt(`Введіть координату Y   пострілу до ${fieldSize}`))
+        //     if (shipPosistionX === userShotX && shipPosistionY === userShotY) {
+        //         alert('ВИ влучили ')
+        //         break
+        //     } else if (shellsNumber - 1 <= 0) {
+        //         alert('Снаряди закінчились ви програли')
+        //         break
+        //     }
+        //     else alert(`ви не влучили. ще залишилось ${--shellsNumber} спроб `)
+        // }
+        let shellsNumber
+        let fieldX = parseInt(prompt('Введіть ширину поля у клітинках'))
+        let fieldY = parseInt(prompt('Введіть висоту поля у клітинках'))
+        shellsNumber = parseInt(prompt('введіть кількість снарядів'))
+        let fieldSize = fieldX * fieldY;
+        let shipPosistionX = 1 + Math.floor(Math.random() * fieldSize)
+        let shipPosistionY = 1 + Math.floor(Math.random() * fieldSize)
+        // alert(shipPosistionX)
+        // alert(shipPosistionY)
+        do {
+            let userShotX = parseInt(prompt(`Введіть координату X   пострілу до ${fieldSize}`))
+            let userShotY = parseInt(prompt(`Введіть координату Y   пострілу до ${fieldSize}`))
+            if (shipPosistionX === userShotX && shipPosistionY === userShotY) {
+                alert('ВИ влучили ')
+                break
+            } else if (shellsNumber - 1 <= 0) {
+                alert('Снаряди закінчились ви програли')
+                break
+            }
+            else alert(`ви не влучили. ще залишилось ${--shellsNumber} спроб `)
+        } while (shellsNumber > 0);
+    </script>
+</body>
+
+</html>

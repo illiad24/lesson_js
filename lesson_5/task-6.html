@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 6 </h1>
+    <table></table>
+    <h2>
+        Задача 6. Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
+    </h2>
+    <script>
+        let count = 1
+        document.write('<div>')
+        for (let a = 0; a < 3; a++) {
+            document.write('<table border="2px">')
+            for (let i = 0; i < 3; i++) {
+                document.write('<tr>')
+                for (let j = 1; j <= 3; j++) {
+                    document.write(`<td> ${count} </td>`)
+                    count++
+                }
+                document.write('</tr>')
+            }
+            document.write('</table>')
+
+        }
+        document.write('</div>')
+    </script>
+</body>
+
+</html>
