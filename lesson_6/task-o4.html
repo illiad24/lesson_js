@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task o4 </h1>
+    <h2>
+        4. Знайти суму всіх непарних чисел з діапазону, який вводить користувач з клавіатури.
+    </h2>
+    <script>
+        let startNumber = parseInt(prompt('введіть 1 число'))
+        let endNumber = parseInt(prompt('введіть 2 число'))
+        let sum = 0
+        for (let i = startNumber; i <= endNumber; i++) {
+            if (i % 2 !== 0) sum += i
+            console.log(i)
+        }
+        document.write(sum)
+    </script>
+</body>
+
+</html>

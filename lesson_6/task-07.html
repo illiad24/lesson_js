@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        7. Інвестор вклав тис. грн на 20 років під 20% річних,
+        а потім на 17 років під 27% річних. Визначити за допомогою циклів суму, яку він одержить
+    </h2>
+    <script>
+        let startSum = parseFloat(prompt('введіть суму інвестора '))
+        const firstYear = 20
+        const secondYear = 17
+        const firstPersent = 20
+        const secondPersent = 27
+        let sumFirst = 0
+        let sumSecond = 0
+        let firstMoneyYear = startSum * firstPersent / 100
+        let secondMoneyYear = startSum * secondPersent / 100
+        for (let i = 0; i < firstYear; i++) {
+            sumFirst += firstMoneyYear
+        }
+        document.write(`за перший вклад :${sumFirst}`)
+        for (let i = 0; i < secondYear; i++) {
+            sumSecond += secondMoneyYear
+        }
+        document.write(`за другий вклад :${sumSecond}`)
+        let totakSum = sumFirst + sumSecond
+        document.write(`загальна сума :${totakSum}`)
+
+    </script>
+</body>
+
+</html>

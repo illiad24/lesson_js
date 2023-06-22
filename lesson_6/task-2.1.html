@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 2.1 </h1>
+    <h2>
+        2.1. З клавіатури поступово вводяться символи поки не буде введено символ «а». Вивести рядок символів у зворотному порядку.
+    </h2>
+    <script>
+        let userSymbol
+        let allSymbol = ''
+        do {
+            userSymbol = prompt('Введіть символ')
+            if (userSymbol === 'a') break
+            allSymbol += userSymbol
+        } while (userSymbol !== 'a');
+        let reversedSymbols = allSymbol.split('').reverse().join('');
+        document.write(reversedSymbols)
+    </script>
+</body>
+
+</html>

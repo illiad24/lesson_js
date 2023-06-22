@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 2 </h1>
+    <h2>
+
+        2.З клавіатури вводитяться числа поки не буде введено 0. Знайти добуток чисел.
+
+    </h2>
+    <script>
+        let product = 1
+        let userNum = 1
+        do {
+            product *= userNum
+            userNum = parseFloat(prompt('Введіть число'))
+
+        } while (userNum !== 0)
+        document.write(`Sum:${product}`)
+    </script>
+</body>
+
+</html>

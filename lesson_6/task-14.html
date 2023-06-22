@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 14 </h1>
+    <h2>
+        14. Морський бій. Комп’ютер випадковим чином розміщує одиночний корамель на полі 5*5.
+        З клавіатури поступово вводяться координати пострілу поки корабель не буде потоплено.
+        Спробуйте відоразити гру графічно.
+
+    </h2>
+    <script>
+        let minNum = 1, maxNum = 5
+        let shipPositionX = minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+        let shipPositionY = minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+
+        alert(shipPositionX)
+        alert(shipPositionY)
+        let missleNumber = parseInt(prompt('Кількість снарядів'))
+        let checkShootResult, shootX, shootY
+        do {
+            shootX = parseInt(prompt('Введіть координату X'))
+            shootY = parseInt(prompt('Введіть координату Y'))
+            missleNumber--
+            checkShootResult = shipPositionX === shootX && shipPositionY === shootY
+            !checkShootResult ? alert('мімо') : null
+        } while (missleNumber > 0 && !checkShootResult);
+        if (checkShootResult) alert('Перемога')
+        else alert('Програш')
+
+    </script>
+</body>
+
+</html>

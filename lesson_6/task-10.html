@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 10 </h1>
+    <h2>
+        10.З клавіатури вводиться вартість одиниці товару. Поки користувач не введе суму грошей,
+        яка достатня для купівлі товару або не відмовиться від купівлі давати можливість вводити суму грошей.
+    </h2>
+    <script>
+        let productPrice = parseFloat(prompt('введіть ціну товару'))
+        let money
+        let moneySum = 0
+        let question
+        do {
+            money = parseFloat(prompt('введіть суму грошей'))
+            moneySum += money
+
+            if (moneySum < productPrice) {
+                question = confirm('відмовиться від купівлі?')
+                if (question) {
+                    alert('ви відмовилися від покупки')
+                    break
+                }
+            }
+
+        } while (moneySum < productPrice);
+        if (moneySum >= productPrice) {
+            alert('вітаю з покупкою')
+        }
+    </script>
+</body>
+
+</html>

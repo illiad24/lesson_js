@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 11 </h1>
+    <h2>
+        11.1. Комп’ютер загадує два випадкових числа від 1 до 10.
+        Вгадати обидва числа шляхом введеня можливих варіантів.
+        В кінці вивести кількість спроб користувача.
+    </h2>
+    <script>
+        const min = 1, max = 10
+        let firstRandNum = min + Math.floor(Math.random() * (max - min + 1))
+        let secondRandNum = min + Math.floor(Math.random() * (max - min + 1))
+        alert(firstRandNum)
+        alert(secondRandNum)
+        let firstUserNum
+        let secondUserNum
+        let count = 0
+        do {
+            firstUserNum = parseInt(prompt('Вгадайте 1 число від 1 до 10'))
+            secondUserNum = parseInt(prompt('Вгадайте 2 число від 1 до 10'))
+            count++
+        } while (firstRandNum !== firstUserNum || secondUserNum !== secondRandNum);
+        document.write(`кількість спроб:${count}`)
+    </script>
+</body>
+
+</html>

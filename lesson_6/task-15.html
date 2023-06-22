@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 15 </h1>
+    <h2>
+        15. Тир. На полі з 10 клітинок розміщують зайця.
+        За один крок заєць може стрибати на відстань від 0 до 3 позицій у будь-якому напрямку.
+        З клавіатури вводиться позиція пострілу. Гра продовжується поки у користувача не закінчаться патрони
+        (кількість вводиться з клавіатури) або не буде влучання. Спробуйте відоразити гру графічно.
+
+    </h2>
+    <script>
+        const fieldSize = 10
+        let rabbitPosition = 1 + Math.floor(Math.random() * (fieldSize - 1 + 1))
+        alert(rabbitPosition)
+        let userAmmunition = parseInt(prompt('Вкажіть кількість патронів'))
+        let shot, checkShotResult
+        do {
+            shot = parseInt(prompt('Введіть номер пострілу'))
+            checkShotResult = shot === rabbitPosition
+            userAmmunition--
+            if (shot >= 1 && shot <= 10) {
+                if (shot === rabbitPosition) {
+                    checkShotResult = true;
+                } else {
+                    checkShotResult = false;
+                    rabbitPosition = rabbitPosition - 3 + Math.floor(Math.random() * (rabbitPosition + 3) - (rabbitPosition - 3) + 1);
+                }
+            } else {
+                alert('Некоректна позиція пострілу. Спробуйте ще раз.');
+                checkShotResult = false;
+            }
+        } while (!checkShotResult && userAmmunition > 0);
+        if (checkShotResult) alert('Виграли')
+        else alert('програли')
+
+    </script>
+</body>
+
+
+</html>

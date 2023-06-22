@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        4. З клавіатури поступово вводяться числа. Знайти суму перших N парних чисел.
+    </h2>
+    <script>
+        //userNum
+        //sum
+        //evenNum
+        let sum = 0
+        let count = 0
+        let countEventNum = parseInt(prompt('Ведіть кількість потрібних чисел парних'))
+        while (count < countEventNum) {
+
+            let userNum = parseInt(prompt('Введіть число'))
+            if (userNum % 2 === 0) {
+                sum += userNum
+                count++
+            }
+        } document.write(sum)
+    </script>
+</body>
+
+</html>

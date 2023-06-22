@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 12 </h1>
+    <h2>
+        12. З клавіатури вводяться поступово числа.
+        Знайти два найбільші числа. Ввід здійснюється до тих пір,
+        поки різниця між такими числами є більшою за 5.
+    </h2>
+    <script>
+        let maxFirst = 0
+        let maxSecond = 0
+        let diff = 0
+        do {
+            let userNum = parseFloat(prompt('Введіть число'))
+            if (userNum > maxFirst) {
+                maxSecond = maxFirst
+                maxFirst = userNum
+            } else if (userNum > maxSecond) {
+                maxSecond = userNum
+            }
+            diff = Math.abs(maxFirst - maxSecond);
+        } while (diff <= 5);
+        document.write(`max1:${maxFirst}`)
+        document.write(`max2:${maxSecond}`)
+    </script>
+</body>
+
+</html>

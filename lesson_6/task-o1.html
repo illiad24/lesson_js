@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 01 </h1>
+    <h2>
+        1. З клавіатури вводяться числа до тих пір, поки послідовність є зростаючою або спадною.
+    </h2>
+    <script>
+
+        let previousNumber = null;
+        let isDecrease = null
+        let isGrowth = null
+        do {
+            let userNum = parseFloat(prompt('Введіть число'))
+            if (previousNumber !== null) {
+                if (userNum > previousNumber) isGrowth = true
+                else if (userNum < previousNumber) isDecrease = true
+            }
+            previousNumber = userNum
+        } while (!isGrowth || !isDecrease);
+        if (isGrowth) {
+            alert('Введена послідовність є зростаючою.');
+        } else {
+            alert('Введена послідовність є спадною.');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+</head>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        3. З клавіатури вводиться початкове знчення суми. Поки сума є меншою за 100 додавати до неї числа, які вводяться з клавіатури.
+    </h2>
+    <script>
+        let startSum = parseFloat(prompt('Введіть початкове значення суми'))
+        while (startSum < 100) {
+            let userNum = parseFloat(prompt('Введіть число'))
+            startSum += userNum
+            alert(`сума:${startSum}`)
+        }
+    </script>
+</body>
+
+</html>
