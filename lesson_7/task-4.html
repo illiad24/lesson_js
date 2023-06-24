@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Створити функцію, яка для 3 заданих чисел
+        знаходить одночасно декілька результатів: кількість парних,
+        кількість додатних, кількість більших за 100.
+    </h2>
+    <script>
+        function getNumEven(a, b, c) {
+            let evenNum = 0
+            a % 2 === 0 ? evenNum++ : null
+            b % 2 === 0 ? evenNum++ : null
+            c % 2 === 0 ? evenNum++ : null
+            return evenNum
+        }
+        function getPositiveNumbers(a, b, c) {
+            let positiveNum = 0
+            a > 0 ? positiveNum++ : null
+            b > 0 ? positiveNum++ : null
+            c > 0 ? positiveNum++ : null
+            return positiveNum
+        }
+        function getGreaterThan100Count(a, b, c) {
+            let greater = 0
+            a > 100 ? greater++ : null
+            b > 100 ? greater++ : null
+            c > 100 ? greater++ : null
+            return greater
+        }
+        let num1 = parseFloat(prompt('Num 1'))
+        let num2 = parseFloat(prompt('Num 2'))
+        let num3 = parseFloat(prompt('Num 3'))
+        let evenNum = getNumEven(num1, num2, num3)
+        let positiveNum = getPositiveNumbers(num1, num2, num3)
+        let greaterNum = getGreaterThan100Count(num1, num2, num3)
+        document.write(`
+        кількість парних:${evenNum} <br>
+        кількість додатніх:${positiveNum} <br>
+        кількість більших за 100:${greaterNum}
+        `)
+    </script>
+</body>
+
+</html>

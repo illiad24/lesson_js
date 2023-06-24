@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Створити функцію, яка за номером місяця повертає його назву.
+    </h2>
+    <script>
+        function getMonthName(monthNum) {
+            let res
+            switch (monthNum) {
+                case 1:
+                    res = 'січень'
+                    break;
+                case 2:
+                    res = 'Лютий'
+                    break;
+                case 3:
+                    res = 'Березень'
+                    break;
+                case 4:
+                    res = 'Квітень'
+                    break;
+                case 5:
+                    res = 'Травень'
+                    break;
+                case 6:
+                    res = 'Червень'
+                    break;
+                case 7:
+                    res = 'Липень'
+                    break;
+                case 8:
+                    res = 'Серпень'
+                    break;
+                case 9:
+                    res = 'Вересень'
+                    break;
+                case 10:
+                    res = 'Жовтень'
+                    break;
+                case 11:
+                    res = 'Листопад'
+                    break;
+                case 12:
+                    res = 'Шрудень'
+                    break;
+
+                default:
+                    res = 'введіть корректне значення від 1 до 12'
+                    break;
+            }
+            return res
+        }
+        let userMonthNum = parseInt(prompt('Введіть номер місяця від 1 до 12'))
+        let monthName = getMonthName(userMonthNum)
+        alert(monthName)
+    </script>
+</body>
+
+</html>
