@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+        • починаються на букву «А»;
+        • перша і остання літери співпадають;
+        • складаються з більше ніш 5 символів;
+    </h2>
+    <script>
+        function getCarNum(userCarNum) {
+            let carName = []
+            for (let i = 0; i < userCarNum; i++) {
+                let userCarNumName = prompt('Ввідть номер автомобіля')
+                carName.push(userCarNumName)
+            }
+            return carName
+        }
+        function getNumLettersMatch(carName) {
+            let count = 0
+            for (let i = 0; i < carName.length; i++) {
+                if (carName[i][0] === carName[i][carName[i].length - 1]) {
+                    count++
+                }
+            }
+            return count
+        }
+        function getNumCarNameBeginA(carName) {
+            let count = 0
+            for (let i = 0; i < carName.length; i++) {
+                const element = carName[i];
+                if (element[0] === 'A') {
+                    count++
+                }
+                return count
+            }
+
+        }
+        function getConsistMoreThan5(carName) {
+            let count = 0
+            for (let i = 0; i < carName.length; i++) {
+                if (carName[i].length > 5) {
+                    count++
+                }
+            } return count
+        }
+        let userCarNum = parseInt(prompt('  Введіть кількість номерів'))
+        let carName = getCarNum(userCarNum)
+        let numCarNameBeginA = getNumCarNameBeginA(carName)
+        let numLettersMatch = getNumLettersMatch(carName)
+        let consistMoreThan5 = getConsistMoreThan5(carName)
+        document.write(`${numCarNameBeginA} номери починаються на букву «А» <br>`)
+        document.write(`${numLettersMatch} перша і остання літери співпадають <br>`)
+        document.write(`${consistMoreThan5} номери складаються з більше ніш 5 символів`)
+    </script>
+</body>
+
+</html>
