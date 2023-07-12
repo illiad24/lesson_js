@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача. Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000) <br>
+        1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн. <br>
+        2.Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн. <br>
+        3.Сформувати список з тих цін, які більші за попереднє значення <br>
+        4.Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального <br>
+        5)Підрахувати кількість змін цін <br>
+        6.Визначити, чи є ціна, що менше 1000 <br>
+        7.Визначати, чи усі ціни більше за 1000 <br>
+        8)Підрахувати кількість цін, що більше за 1000 <br>
+        9)Підрахувати суму цін, що більше за 1000 <br>
+        10)Знайти першу ціну, що більше за 1000 <br>
+        11)Знайти індекс першої ціни, що більше за 1000 <br>
+        12)Знайти останню ціну, що більше за 1000 <br>
+        13)Знайти індекс останньої ціни, що більше за 1000 <br>
+
+    </h2>
+    <script>
+        function getArr(userNum, minNum, maxNum) {
+            let priceArray = []
+            for (let i = 0; i < userNum; i++) {
+                const randNum = minNum + Math.floor(Math.random() * maxNum)
+                priceArray.push(randNum)
+            }
+            return priceArray
+        }
+        let userNum = parseInt(prompt('Введіть кількість цін'))
+        let arr = getArr(userNum, 1, 10000)
+        document.write(`${arr} <br>`)
+        // 1 ----------------------------------------------------------------
+        let arrMoreThan1000 = arr.filter((el) => el > 1000)
+        document.write(`${arrMoreThan1000} <br>`)
+        // 2------------------------------------------------------------------
+        let indexNum = arr.reduce(
+            (result, el, index) => {
+                if (el > 1000) {
+                    result.push(index)
+                }
+                return result
+            },
+            []
+        )
+        document.write(`${indexNum} <br>`)
+
+        // 3--------------------------------------------------------
+        let priceListMorePrev = arr.filter((el, index, array) => array[index] > array[index - 1])
+        document.write(` ${priceListMorePrev} <br>`)
+        // 4-----------------------------------------------------------------------
+        // 4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+
+        let max = Math.max(...arr)
+        let persentArr = arr.map((price) => (price) * 100 / max)
+        let newPricewsForPersent = persentArr.map((el) => el.toFixed(2) + '%')
+        document.write(`${newPricewsForPersent} <br>`)
+        // 5 --------------------------------------------------------------------------
+        // 5)Підрахувати кількість змін цін
+
+        let changePrice = arr.reduce((count, el, index, array) => {
+            if (array[index] < array[index - 1] || array[index] > array[index - 1]) count++
+            return count
+        }, 1)
+        document.write(`${changePrice} <br>`)
+
+        // 6 --------------------------------------------------------------------------
+        if (arr.some(el => el < 1000)) document.write(`yes <br>`)
+        else document.write(`no <br>`)
+        // 7 -----------------------------------------------------------------------------
+
+        if (arr.every(el => el > 1000)) document.write(`yes <br>`)
+        else document.write(`no <br>`)
+        // 8 -----------------------------------------------------------------------------
+        let countPrice = arr.reduce((count, el) => {
+            if (el > 1000) count++
+            return count
+        }, 0)
+        document.write(`${countPrice} <br>`)
+        // 9------------------------------------------------------------------------------
+        let sumPrice = arr.reduce((sum, el) => el > 1000 ? sum + el : sum)
+        document.write(`${sumPrice} <br>`)
+
+        // 10------------------------------------------------------------------------------
+        let findPriceMore1000 = arr.find(el => el > 1000)
+        document.write(`${findPriceMore1000} <br>`)
+        // 11------------------------------------------------------------------------------
+        let findIndexMore1000 = arr.findIndex(el => el > 1000)
+        document.write(`${findIndexMore1000} <br>`)
+        // 12------------------------------------------------------------------------------
+        let findLastPriceMore1000 = arr.findLast(el => el > 1000)
+        document.write(`${findLastPriceMore1000} <br>`)
+        // 13------------------------------------------------------------------------------
+        let findLastIndexMore1000 = arr.findLastIndex(el => el > 1000)
+        document.write(`${findLastIndexMore1000} <br>`)
+
+    </script>
+</body>
+
+</html>

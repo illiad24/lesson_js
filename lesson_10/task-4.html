@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        4.Дано масив елементів. Вивести на екран елементи, що більші за 100
+    </h2>
+    <script>
+        function getArr(inputNum) {
+            let arr = []
+            for (let i = 0; i < inputNum; i++) {
+                let inputArrNum = parseInt(prompt('Введіть число'))
+                arr.push(inputArrNum)
+            }
+            return arr
+        }
+        let inputNum = parseInt(prompt('Введіть кількість елементів масиву'))
+        let arr = getArr(inputNum)
+        for (const element of arr) {
+            if (element > 100) document.write(`${element}<br>`)
+        }
+
+    </script>
+</body>
+
+</html>

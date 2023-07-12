@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 8 </h1>
+    <h2>
+        8. Дано масив номерів авто.
+        Сформувати новий масив тих, які починаються на «А»
+
+    </h2>
+    <script>
+        let carNumbers = ['AA0000KA', 'FF3232F', 'Ab3434dD', 'Ab3pe34dD']
+        let carNumbersBeginA = []
+        carNumbers.forEach(
+            (carNumber, index, carArray) => {
+                if (carNumber[0] === 'A') carNumbersBeginA.push(carArray[index])
+            }
+        )
+        document.write(carNumbersBeginA)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 2 </h1>
+    <h2>
+        2. Користувач вводить кількість елементів.
+        Створити масив, у якому перша половина заповнена 1-цями, а друга заповнена 7-ками.
+
+    </h2>
+    <script>
+        function getArr(inputUserNum, firstNum = 1, secondNum = 7) {
+            let arr = new Array(inputUserNum).fill(firstNum, 0, inputUserNum / 2).fill(secondNum, inputUserNum / 2)
+            return arr
+        }
+        let inputUserNum = parseInt(prompt('Введіть кількість елементів'))
+        let arr = getArr(inputElement)
+        document.write(arr)
+    </script>
+</body>
+
+</html>
