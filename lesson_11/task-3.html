@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        Задача 3. Морський бій. Випадковим чином на двовимірному полі
+        розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати.
+        Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+    </h2>
+    <script>
+        function getRandNum(minValue, maxValue) {
+            return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+        }
+        function getArray(arrayLength) {
+            let arr = new Array(arrayLength).fill(0)
+            return arr
+        }
+        function getTable(rowNumbers, columnNumbers) {
+            let table = []
+            for (let i = 0; i < rowNumbers; i++) {
+                let randomRow = getArray(columnNumbers)
+                table.push(randomRow)
+
+            }
+            return table
+        }
+        function getRandPosition(rowNumbers, columnNumbers, shipCount) {
+            let table = getTable(rowNumbers, columnNumbers)
+
+            for (let i = 0; i < shipCount; i++) {
+                let shipPositionX = getRandNum(0, rowNumbers - 1)
+                let shipPositionY = getRandNum(0, columnNumbers - 1)
+                alert(`${shipPositionX} ${shipPositionY}`)
+                if (table[shipPositionX][shipPositionY] === 1) {
+                    i--
+                    continue
+                }
+
+                table[shipPositionX][shipPositionY] = 1
+            }
+            return table
+        }
+        let userAmunition = parseInt(prompt('Введіть кількість снарядів'))
+        let ship = 5;
+        let table = getRandPosition(6, 6, ship);
+        let userShootX
+        let userShootY
+        do {
+            userShootX = parseInt(prompt('введіть кординату пострлу Х'))
+            userShootY = parseInt(prompt('введіть кординату пострлу Y'))
+            if (table[userShootX][userShootY] === 1) {
+                table[userShootX][userShootY] = 0
+                alert('ви потопили корабель')
+                ship--
+            } else {
+                alert('Промах!');
+            }
+            if (ship === 0) {
+                alert('Ви перемогли')
+            }
+
+            userAmunition--
+        } while (userAmunition !== 0 || ship < 0);
+        if (userAmunition === 0) {
+            alert('   Снаряди закінчились ви програли')
+        }
+        console.log(table);
+    </script>
+</body>
+
+</html>

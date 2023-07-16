@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Знайти суми елементів у вказаній області
+        (масиви розділені на 4 рівні частини - не звертаємо увагу на криві малюнки ☺ )
+    </h2>
+    <script>
+        function getRandomNum(minValue, maxValue) {
+            return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+        }
+        function getRandomArray(arrayLenght, minValue, maxValue) {
+            let randomArr = []
+            for (let i = 0; i < arrayLenght; i++) {
+                let randNum = getRandomNum(minValue, maxValue)
+                randomArr.push(randNum)
+            }
+            return randomArr
+        }
+        function getTable(rowNumbers, columnNumbers, minValue, maxValue) {
+            let table = []
+            for (let i = 0; i < rowNumbers; i++) {
+                let randomRow = getRandomArray(columnNumbers, minValue, maxValue)
+                table.push(randomRow)
+            }
+            return table
+        }
+        let table = getTable(2, 6, 1, 5)
+        document.write(table)
+        console.log(table)
+        //========================================================================================================================================================
+
+        // 1 варіант
+        // function getSectionTableSum(table, startRowIndex, startColumnIndex, endRowIndex, endColumnIndex) {
+        //     let sum = 0;
+        //     for (let rowNumber = startRowIndex; rowNumber <= endRowIndex; rowNumber++) {
+        //         for (let columnNumber = startColumnIndex; columnNumber <= endColumnIndex; columnNumber++) {
+        //             sum += table[rowNumber][columnNumber];
+        //         }
+        //     }
+        //     return sum;
+        // }
+        // console.log(getSectionTableSum(table, 0, 0, 1, 2));
+        // console.log(getSectionTableSum(table, 0, 3, 1, 5));
+        // console.log(getSectionTableSum(table, 2, 0, 3, 2));
+        // console.log(getSectionTableSum(table, 2, 3, 3, 5));
+        //========================================================================================================================================================
+        // 2 варіант
+        function getSectionTableSum(table, count) {
+            let sum = 0
+            let rowLength = table.length
+            let columnLength = table[0].length
+
+            let halfRowLength = Math.floor(rowLength / 2)
+            let halfColumnLength = Math.floor(columnLength / 2)
+
+            let startRow = 0
+            let endRow = halfRowLength
+            let startColumn = 0
+            let endColumn = halfColumnLength
+
+            if (count === 2) {
+                startColumn = halfColumnLength
+                endColumn = columnLength
+            } else if (count === 3) {
+                startRow = halfRowLength
+                endRow = rowLength
+            } else if (count === 4) {
+                startRow = halfRowLength
+                endRow = rowLength
+                startColumn = halfColumnLength
+                endColumn = columnLength
+            }
+            for (let rowNumber = startRow; rowNumber < endRow; rowNumber++) {
+                for (let columnNumber = startColumn; columnNumber < endColumn; columnNumber++) {
+                    sum += table[rowNumber][columnNumber];
+                }
+            }
+            return sum;
+        }
+
+
+        console.log(getSectionTableSum(table, 1));
+        console.log(getSectionTableSum(table, 2));
+        console.log(getSectionTableSum(table, 3));
+        console.log(getSectionTableSum(table, 4));
+
+        //========================================================================================================================================================
+        // 5)
+        let sum = 0
+        for (let rowNumber = 1; rowNumber < table.length; rowNumber += 2) {
+            for (let columnNumber = 0; columnNumber < table[rowNumber].length; columnNumber++) {
+                sum += table[rowNumber][columnNumber]
+            }
+        }
+        console.log(sum)
+        // 6)
+
+        let sumColumn = 0
+        for (let rowNumber = 0; rowNumber < table.length; rowNumber++) {
+            for (let columnNumber = 1; columnNumber <= table[rowNumber].length; columnNumber++) {
+
+                columnNumber % 2 !== 0 ? sumColumn += table[rowNumber][columnNumber] : sumColumn
+
+            }
+        }
+        console.log(sumColumn)
+        // 6) У парних рядках – непарні стовпці, у непарних – парні.
+        let oddHundredsSum = 0
+        let evenHundredsSum = 0
+        for (let rowNum = 0; rowNum < table.length; rowNum++) {
+            if (rowNum % 2 === 0) {
+                for (let columnNum = 0; columnNum < table[rowNum].length; columnNum += 2) {
+                    oddHundredsSum += table[rowNum][columnNum]
+                }
+            } else if (rowNum % 2 !== 0) {
+                for (let columnNum = 1; columnNum < table[rowNum].length; columnNum += 2) {
+                    evenHundredsSum += table[rowNum][columnNum]
+                }
+            }
+        }
+        console.log('У парних рядках – непарні стовпці, у непарних – парні.')
+        console.log(`odd ${oddHundredsSum}`)
+        console.log(`even ${evenHundredsSum}`)
+    </script>
+</body>
+
+</html>
