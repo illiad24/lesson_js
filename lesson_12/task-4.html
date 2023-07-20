@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Для розглянутих методів сортування
+        спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком.
+        Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран.
+
+    </h2>
+    <script>
+        function getRandArr(arrLength, minValue, maxValue) {
+            let arr = []
+            for (let i = 0; i < arrLength; i++) {
+                let randNum = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                arr.push(randNum)
+            }
+            return arr
+        }
+        let arr1 = getRandArr(5, 1, 100)
+        let arr2 = getRandArr(5, 1, 100)
+        let arr3 = getRandArr(5, 1, 100)
+        const swap = (arr, i, j) => {
+            const temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        function getBubbleSort(arr) {
+            document.write(` start [${arr}]<br>`)
+
+            let changed
+            do {
+                changed = false
+                for (let i = 1; i < arr.length; i++) {
+                    if (arr[i - 1] > arr[i]) {
+                        swap(arr, i - 1, i)
+                        document.write(`[${arr}]<br>`)
+                        changed = true
+                    }
+                }
+            } while (changed);
+        }
+        getBubbleSort(arr1)
+        document.write(`<br>`)
+        document.write(`<br>`)
+        document.write(`<br>`)
+        document.write(`<br>`)
+        //========================================================================================================================================================
+        function shakerSort(arr) {
+            document.write(` start [${arr}]<br>`)
+
+            let leftIndex = 0
+            let rightIndex = arr.length - 1
+            while (leftIndex < rightIndex) {
+                for (let index = leftIndex; index < rightIndex; index++) {
+                    if (arr[index] > arr[index + 1]) swap(arr, index, index + 1)
+                    document.write(`[${arr}]<br>`)
+
+                }
+                rightIndex--
+                for (let index = rightIndex; index > leftIndex; index--) {
+                    if (arr[index] < arr[index - 1]) swap(arr, index, index - 1)
+                    document.write(`[${arr}]<br>`)
+
+                }
+                leftIndex++
+            }
+            console.log(arr)
+
+        }
+
+        shakerSort(arr2)
+
+        document.write(`<br>`)
+        document.write(`<br>`)
+        document.write(`<br>`)
+        document.write(`<br>`)
+        //========================================================================================================================================================
+        function insertSort(arr) {
+            document.write(` start [${arr}]<br>`)
+            for (let i = 1; i < arr.length; i++) {
+                const currElement = arr[i];
+                let k = i - 1
+                while (k >= 0 && arr[k] > currElement) {
+                    arr[k + 1] = arr[k]
+                    k = k - 1
+                }
+
+                arr[k + 1] = currElement
+                document.write(`[${arr}]<br>`)
+            }
+            console.log(arr)
+        }
+        insertSort(arr3)
+        // розумію зо функція має повертати значення а не виводити але тут інакше не додумався
+    </script>
+</body>
+
+</html>
