@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. З використанням замикань розробити ітератор,
+        тобто функцію, що буде поступово за окремими викликами видавати по одну букву
+        наперед заданого слова.
+        З використанням нього розробити гру «Прекладач».
+        Виводимо для користувача опис цього слова і по одну букву користувач вводить
+        переклад цього слова. Підрахувати кількість вгаданих букв.
+    </h2>
+    <script>
+        function getWordIterator(word) {
+            let count = 0
+            function getLetter() {
+                if (count === word.length) count = 0
+                let letter = word[count]
+                ++count
+                return letter
+            }
+            return getLetter
+        }
+        function findWord(word, description) {
+            let findLetters = 0
+            let userInputWord = []
+            for (let i = 1; i <= word.length; i++) {
+                let userAnswer = prompt(`Перекладіть англійською мовою: ${description} (${word.length} букв)`).toLowerCase()
+                userInputWord.push(userAnswer)
+                let currWord = showWord().toLowerCase()
+                if (userAnswer === currWord) {
+                    findLetters++
+                    alert(`Ви вгадали букву ${userAnswer}`)
+                }
+            }
+            return [userInputWord, findLetters]
+        }
+        let word = 'spring'
+        let wordDescribe = alert('Oдна з чотирьох пір року між зимою та літом, характерна для помірних широт ')
+        let showWord = getWordIterator(word)
+        for (let i = 0; i < word.length; i++) {
+            document.write(`${showWord()}<br>`)
+        }
+        let [userInputWord, findLetters] = findWord(word, wordDescribe)
+        console.log(` кількість вгаданих букв - ${findLetters}, літери які ввели - ${userInputWord}`)
+    </script>
+</body>
+
+</html>

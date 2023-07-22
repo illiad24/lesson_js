@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Нехай , де . Визначити . Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів
+    </h2>
+    <script>
+        function func(i) {
+            if (i === 0) return 1
+            else
+                return func(i - 1) + 2 * i
+        }
+        console.log(func(10))
+        //========================================================================================================================================================
+        function func2(i) {
+            if (i === 0) return 1
+            let res = 1
+            for (let j = 1; j <= i; j++) {
+                res = res + 2 * j
+            }
+            return res
+        }
+        console.log(sum)
+        console.log(func2(10))
+    </script>
+</body>
+
+</html>
