@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+        ----- Властивості ------
+        назва компанії на час розробки (назву періодично змінюють)
+        власник компанії
+        споснсори (масив спонсорів)
+        * прізвище спонсора
+        * ім’я спонсора
+        * сума вкладень спонсора
+        рік випуску
+        вартість сайту
+        Знайти:
+        1) загальну вартість усіх сайтів
+        2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+        3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+        4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+        5) знайти рік, коли прибуток був найбільшим
+        6) упорядкувати список за спаданням прибутку
+        7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+    </h2>
+    <script>
+        let websites = [
+            {
+                company: "Company A",
+                owner: "John Doe",
+                sponsors: [
+                    { lastName: "Smith", firstName: "Alice", investment: 5000 },
+                    { lastName: "Johnson", firstName: "Bob", investment: 3000 }
+                ],
+                year: 2021,
+                cost: 1000040
+            },
+            {
+                company: "Company B",
+                owner: "Jane Smith",
+                sponsors: [
+                    { lastName: "Brown", firstName: "Charlie", investment: 7000 },
+                    { lastName: "Davis", firstName: "David", investment: 2000 },
+                    { lastName: "Miller", firstName: "Emma", investment: 4000 }
+                ],
+                year: 2022,
+                cost: 15000
+            },
+            {
+                company: "Company C",
+                owner: "Michael Johnson",
+                sponsors: [
+                    { lastName: "Wilson", firstName: "Oliver", investment: 60000 },
+                    { lastName: "Anderson", firstName: "Sophia", investment: 40001 }
+                ],
+                year: 2023,
+                cost: 2000
+            }
+        ];
+        //  1) загальну вартість усіх сайтів
+        let totalPrice = websites.reduce(
+            (prevTotalPrice, website) => prevTotalPrice += website.cost,
+            0
+        )
+        console.log(totalPrice)
+        //   2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+        let siteDo2000And2009 = websites.reduce(
+            (count, website) => website.year > 2000 && website.year < 2009 ? count + 1 : count,
+            0
+        )
+        console.log(siteDo2000And2009)
+        //  3) кількість сайтів, де сума спонсорських вкладень була більшою за 10 0000
+        function countWebsitesWithHighSponsorInvestment(websites) {
+            let count = 0;
+
+            for (let i = 0; i < websites.length; i++) {
+                let website = websites[i];
+                let totalInvestment = 0;
+
+                for (let j = 0; j < website.sponsors.length; j++) {
+                    totalInvestment += website.sponsors[j].investment;
+                }
+                if (totalInvestment > 100000) {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        let numberOfWebsites = countWebsitesWithHighSponsorInvestment(websites);
+        console.log(`Кількість сайтів зі спонсорськими вкладеннями більше 100000: ${numberOfWebsites}`);
+        //4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+        const allSponsors = websites.flatMap(website => website.sponsors.map(sponsor => ({
+            sponsorsName: sponsor.firstName,
+            sponsorsLastName: sponsor.lastName
+        })));
+        console.log(allSponsors)
+        //   5) знайти рік, коли прибуток був найбільшим
+        function findYearWithMaxProfit(websites) {
+            let maxProfit = -Infinity
+            let yearWithMaxProfit
+            for (let i = 0; i < websites.length; i++) {
+                const website = websites[i];
+                let websiteCost = website.cost
+                if (maxProfit < websiteCost) {
+                    maxProfit = websiteCost
+                    yearWithMaxProfit = website.year
+                }
+            }
+            return yearWithMaxProfit
+        }
+        let yearWithMaxProfit = findYearWithMaxProfit(websites)
+        console.log(yearWithMaxProfit)
+
+        // 6) упорядкувати список за спаданням прибутку
+        function getSortObj(websites) {
+            for (let i = 0; i < websites.length; i++) {
+                const website = websites[i];
+                websites.sort((el1, el2) => {
+                    return el1.cost - el2.cost
+                })
+            }
+            return websites
+        }
+        let sortObj = getSortObj(websites)
+        console.log(sortObj)
+        //   7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+        let costLess10000 = websites.filter(website => website.cost < 10000)
+        console.log(costLess10000)
+        let costMore10000 = websites.filter(website => website.cost >= 10000)
+        console.log(costMore10000)
+    </script>
+</body>
+
+</html>
