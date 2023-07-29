@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 2</h1>
+    <h2>
+        Задача 2. Створити об’єкт «Авто».
+        Авто
+        Поля(властивості)
+        Марка
+        Розмір бака
+        Кількість наявних літрів
+        Кількість місць
+        Кількість пасажирів
+        //========================================================================================================================================================
+        Методи (дії)
+        Заправка на вказану кількість літрів
+        Виведення кількості пасажирів
+        Додавання пасажирів
+        Висадка пасажирів
+    </h2>
+    <script>
+        // class Car {
+        //     constructor(initMark, initTankSize, initAvailableLiters, initPlaceNum, initPassengers) {
+        //         this.mark = initMark
+        //         this.tankSize = initTankSize
+        //         this.availableLiters = initAvailableLiters
+        //         this.placeNum = initPlaceNum
+        //         this.passengers = initPassengers
+        //     }
+        //     getRefill() {
+        //         let userRefill = parseFloat(prompt('Введіть кількість літр для заправки'))
+        //         if (this.availableLiters + userRefill > this.tankSize) alert('у баці не хватає місця')
+        //         else {
+        //             this.availableLiters += userRefill
+        //             alert(`Бак заправленно на ${userRefill}. Кількість наявних літрів ${this.availableLiters} `)
+        //         }
+        //         return this.availableLiters
+        //     }
+        //     outputPassengers() {
+        //         return console.log(`кількість пасажирів :${this.passengers}`)
+        //     }
+        //     addPassengers() {
+        //         let userAddPassengers = parseInt(prompt('Введіть кількість пасажирів'))
+        //         let freePlace = this.placeNum - this.passengers
+        //         if (userAddPassengers > freePlace) alert('Не достатньо місця')
+        //         else if (userAddPassengers <= freePlace && userAddPassengers >= 0) this.passengers += userAddPassengers
+
+        //         return this.passengers
+        //     }
+        //     disembarkationOfPassengers() {
+        //         let userDisembarkationPassengers = parseInt(prompt('Введіть кількість пасажирів для висадки'))
+        //         if (userDisembarkationPassengers > this.passengers) alert('Не має такої кількості пасажирів')
+        //         else if (userDisembarkationPassengers >= 0 && userDisembarkationPassengers <= this.passengers) this.passengers -= userDisembarkationPassengers
+        //         return this.passengers
+        //     }
+        // }
+        // let carInfo = new Car('Audi', 60, 30, 6, 3)
+        // console.log(r1.getRefill())
+        // console.log(carInfo.passengers)
+        // carInfo.outputPassengers()
+        // console.log(carInfo.addPassengers())
+        // console.log(carInfo.disembarkationOfPassengers())
+        //========================================================================================================================================================
+
+        function Car(initMark, initTankSize, initAvailableLiters, initPlaceNum, initPassengers) {
+            this.mark = initMark
+            this.tankSize = initTankSize
+            this.availableLiters = initAvailableLiters
+            this.placeNum = initPlaceNum
+            this.passengers = initPassengers
+        }
+        Car.prototype.getRefill = function () {
+            let userRefill = parseFloat(prompt('Введіть кількість літр для заправки'))
+            if (this.availableLiters + userRefill > this.tankSize) alert('у баці не хватає місця')
+            else {
+                this.availableLiters += userRefill
+                alert(`Бак заправленно на ${userRefill}. Кількість наявних літрів ${this.availableLiters} `)
+            }
+            return this.availableLiters
+        }
+        Car.prototype.outputPassengers = function () {
+            return console.log(`кількість пасажирів :${this.passengers}`)
+        }
+        Car.prototype.addPassengers = function () {
+            let userAddPassengers = parseInt(prompt('Введіть кількість пасажирів'))
+            let freePlace = this.placeNum - this.passengers
+            if (userAddPassengers > freePlace) throw new Error('Не достатньо місця')
+            else if (userAddPassengers <= freePlace && userAddPassengers >= 0) this.passengers += userAddPassengers
+            return this.passengers
+        }
+        Car.prototype.disembarkationOfPassengers = function () {
+            let userDisembarkationPassengers = parseInt(prompt('Введіть кількість пасажирів для висадки'))
+            if (userDisembarkationPassengers > this.passengers) throw new Error('Не має такої кількості пасажирів')
+            else if (userDisembarkationPassengers >= 0 && userDisembarkationPassengers <= this.passengers) this.passengers -= userDisembarkationPassengers
+            return this.passengers
+        }
+        let carInfo = new Car('Audi', 60, 30, 6, 3)
+        console.log(carInfo.passengers)
+        carInfo.outputPassengers()
+        console.log(carInfo.addPassengers())
+        console.log(carInfo.disembarkationOfPassengers())
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        Задача 3. Розробити клас MultChecker для перевірки таблиці множення
+
+        Поля
+
+        Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+        Кількість правильних відповідей
+        Кількість неправильних відповідей
+        //========================================================================================================================================================
+
+        Методи
+
+        Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+        Перевірка правильності вказаної відповіді
+        render
+    </h2>
+    <script>
+        class MultChecker {
+            constructor(initFirstNumber) {
+                this.firstNumber = initFirstNumber
+                this.trueAnswer = 0
+                this.falseAnswer = 0
+            }
+            generateExample() {
+                let secondNumber = 1 + Math.floor(Math.random() * (10 - 1 + 1))
+                return secondNumber
+            }
+            checkAnswer() {
+                let secondNum = this.generateExample()
+                let userAnswer = parseInt(prompt(`${this.firstNumber} * ${secondNum}`))
+                let answer = secondNum * this.firstNumber
+
+                if (userAnswer === answer) {
+                    this.trueAnswer++
+                    return true
+                }
+                else if (userAnswer !== answer) {
+                    this.falseAnswer++
+                    return false
+                }
+            }
+            render() {
+                console.log(`Кількість правильних відповідей ${this.trueAnswer}`)
+                console.log(`Кількість неправильних відповідей ${this.falseAnswer}`)
+            }
+        }
+        let mult = new MultChecker(4)
+        for (let index = 0; index < 5; index++) {
+            console.log(mult.generateExample())
+            console.log(mult.checkAnswer())
+        }
+        mult.render()
+    </script>
+</body>
+
+</html>

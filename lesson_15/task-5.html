@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 5 </h1>
+    <h2>
+        Задача 5. Розробити клас «Керівник танців»
+        Поля
+        Масив імен хлопців
+        Масив імен дівчат
+        //======================================================================================================================================================== Методи
+        Метод випадкового вибору імені хлопця
+
+        Метод випадкового вибору імені дівчини
+
+        Метод виведення пари для танців
+        Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+    </h2>
+    <script>
+        class DanceLeader {
+            constructor(initBoys, initGirl) {
+                this.boys = initBoys
+                this.girl = initGirl
+            }
+            getRandNum(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+            getRandomBoysName() {
+                let randIndex = this.getRandNum(0, this.boys.length - 1)
+                let randBoyName = this.boys[randIndex]
+                return randBoyName
+
+            }
+            getRandomGirlName() {
+                let randIndex = this.getRandNum(0, this.girl.length - 1)
+                let randGirlName = this.girl[randIndex]
+                return randGirlName
+            }
+            getRandCouples() {
+                let randBoyIndex = this.getRandNum(0, this.boys.length - 1)
+                let randGirlIndex = this.getRandNum(0, this.girl.length - 1)
+                let couples = []
+                let randBoyName = this.boys[randBoyIndex]
+                let randGirlName = this.girl[randGirlIndex]
+                couples.push(randBoyName, randGirlName)
+                return couples
+            }
+            // 1варіант
+            // run() {
+            //     setInterval(() => {
+            //         alert(this.getRandCouples())
+            //     }, 5000);
+            // }
+            // 2 варіант
+            run() {
+                setTimeout(() => {
+                    alert(this.getRandCouples())
+                    this.run()
+                }, 5000);
+            }
+        }
+        let danceStudent = new DanceLeader(['ivan', 'petro', 'stepan'], ['olga', 'oksana', 'tania'])
+        console.log(danceStudent)
+
+        console.log(danceStudent.getRandomBoysName())
+        console.log(danceStudent.getRandomGirlName())
+        console.log(danceStudent.getRandCouples())
+        danceStudent.run()
+    </script>
+</body>
+
+</html>

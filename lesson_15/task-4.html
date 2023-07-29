@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Розробити клас Baner
+
+        Поля
+
+        Масив об’єктів ( графічних зображень та посилань на сайти)
+        //========================================================================================================================================================
+        методи
+
+        Метод випадкового вибору об’єкта (графічного зображення та посилання)
+        Метод виведення випадкового банера
+
+    </h2>
+
+    <script>
+        class Baner {
+            constructor(initBannersArr) {
+                this.bannersArr = initBannersArr
+            }
+            getRandNum(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+            getRandBanner() {
+                let randIndex = this.getRandNum(0, this.bannersArr.length - 1)
+                return this.bannersArr[randIndex]
+            }
+            breedingBanner() {
+                let randBan = this.getRandBanner()
+                document.write(`
+                <a href="${randBan.link}">
+        <img src="${randBan.image}" alt="image">
+    </a>
+                `)
+            }
+        }
+        let banArr = [
+            {
+                image: 'img/01.png',
+                link: 'https://travelulu-site.netlify.app/'
+            },
+            {
+                image: 'img/02.png',
+                link: 'https://safari-site.netlify.app/'
+            },
+            {
+                image: 'img/03.png',
+                link: 'https://jadoo-site.netlify.app/home.html'
+            },
+            {
+                image: 'img/04.png',
+                link: 'https://site-deep.netlify.app/'
+            }
+        ]
+        let randBaner = new Baner(banArr)
+        console.log(randBaner)
+        console.log(randBaner.getRandBanner())
+        randBaner.breedingBanner()
+    </script>
+</body>
+
+</html>

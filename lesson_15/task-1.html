@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+        Тир
+
+
+        Поля(властивості)
+        Масив, у якому зберігається поле з зайцями
+        Методи (дії)
+        Метод пострілу (задається позиція пострілу)
+        Виведення ігрового поля
+
+
+    </h2>
+    <script>
+        // class ShootingGallery {
+        //     constructor(cellNumbers, rabbitNum) {
+        //         this.cellNumbers = cellNumbers
+        //         this.rabbits = rabbitNum
+        //         this.field = this.generationField()
+        //     }
+        //     getRandNum(min, max) {
+        //         return min + Math.floor(Math.random() * (max - min + 1))
+        //     }
+        //     generationField() {
+        //         let field = new Array(this.cellNumbers).fill(0)
+        //         for (let i = 0; i < this.rabbits;) {
+        //             let randIndex = this.getRandNum(0, field.length - 1)
+        //             if (field[randIndex] !== 1) {
+        //                 field[randIndex] = 1
+        //                 i++
+        //             }
+        //         }
+        //         return field
+        //     }
+        //     userShoot() {
+        //         do {
+        //             let userShoot = parseInt(prompt(`Введіть номер пострілу від ${0} до ${this.cellNumbers - 1}`))
+        //             if (this.field[userShoot] === 1) {
+        //                 alert('ви попали у зайця')
+        //                 this.field[userShoot] = 0
+        //                 this.rabbits--
+        //             } else alert('промах')
+        //         } while (this.rabbits > 0);
+        //         if (this.rabbits <= 0) alert(' you win')
+        //     }
+        //     printField() {
+        //         console.log(`Ігрове поле: ${this.field}`);
+        //     }
+        // }
+        // let game = new ShootingGallery(10, 4)
+        // console.log(game)
+        // console.log(game.generationField())
+        // game.printField()
+        // game.userShoot()
+        //========================================================================================================================================================
+        function ShootingGallery(cellNumbers, rabbitNum) {
+            this.cellNumbers = cellNumbers
+            this.rabbits = rabbitNum
+            this.field = this.generationField()
+        }
+        ShootingGallery.prototype.getRandNum = function (min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1))
+        }
+        ShootingGallery.prototype.generationField = function () {
+            let field = new Array(this.cellNumbers).fill(0)
+            for (let i = 0; i < this.rabbits;) {
+                let randIndex = this.getRandNum(0, field.length - 1)
+                if (field[randIndex] !== 1) {
+                    field[randIndex] = 1
+                    i++
+                }
+            }
+            return field
+        }
+        ShootingGallery.prototype.userShoot = function () {
+            do {
+                let userShoot = parseInt(prompt(`Введіть номер пострілу від ${0} до ${this.cellNumbers - 1}`))
+                if (this.field[userShoot] === 1) {
+                    alert('ви попали у зайця')
+                    this.field[userShoot] = 0
+                    this.rabbits--
+                } else alert('промах')
+            } while (this.rabbits > 0);
+            if (this.rabbits <= 0) alert(' you win')
+        }
+        ShootingGallery.prototype.printField = function () {
+            console.log(`Ігрове поле: ${this.field}`);
+        }
+        let game = new ShootingGallery(10, 4)
+        console.log(game)
+        console.log(game.generationField())
+        game.printField()
+        game.userShoot()
+    </script>
+</body>
+
+</html>
