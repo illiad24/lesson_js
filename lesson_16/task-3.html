@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        Задача 3. Об’єкт “Фірма” (використати члени-класи)
+        поля
+        назва фірми;
+        дата заснування (рік, місяць);
+        послуги (назва послуги, вартість, термін виконання);
+        адреси філіалів (країна, місто, вулиця, номер будинку);
+        //========================================================================================================================================================
+        методи
+        визначення кількості років існування фірми;
+        виведення всіх філіалів фірми у вказаному місті;
+        виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+    </h2>
+    <script>
+        class Firma {
+            #name
+            constructor(name, year, month) {
+                this.Name = name
+                this.establishment = [year, month]
+                this.service = []
+                this.filial = []
+            }
+            get Name() {
+                return `${this.#name}`
+            }
+            set Name(newName) {
+                if (newName.length < 1) throw new Error
+                this.#name = newName
+            }
+            addService(nameService, cost, deadline) {
+                const service = { nameService, cost, deadline }
+                this.service.push(service)
+
+            }
+            addFilial(country, city, street, homeNum) {
+                let address = { country, city, street, homeNum }
+                this.filial.push(address)
+            }
+            existenceFirm() {
+                const year = 2023
+                return year - this.establishment[0]
+            }
+            withdrawalOfBranches(city) {
+                for (const item of this.filial) {
+                    if (item.city === city) console.log(item)
+                }
+            }
+            withdrawalService(cost, day) {
+                for (const item of this.service) {
+                    if (item.cost === cost && item.deadline === day) console.log(item)
+
+                }
+            }
+            toString() {
+                return `name ${this.Name} year:${this.establishment[0]} month:${this.establishment[1]} `
+            }
+        }
+        let firma1 = new Firma('dream', 2012, 5)
+        firma1.addService('PM', 2500, 2)
+        firma1.addService('СЕО', 2500, 2)
+        firma1.addService('Дизайн', 25000, 7)
+        firma1.addService("Веб-розробка", 5000, 30)
+        firma1.addService("Мобільний додаток", 8000, 45);
+        firma1.addFilial("Україна", "Київ", "Вулиця 1", "10");
+        firma1.addFilial("Україна", "Львів", "Вулиця 2", "5");
+        firma1.addFilial("Україна", "Львів", "Вулиця 3", "25");
+
+        console.log(firma1)
+        document.write(` ${firma1.existenceFirm()} Років існує фірма ${firma1.name} <br>`)
+        firma1.withdrawalOfBranches('Львів')
+        firma1.withdrawalService(2500, 2)
+    </script>
+</body>
+
+</html>
