@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Створити клас, що дозволяє виконувати такі операції над масивами:
+        знаходження кількості додатних,
+        кількості від’ємних,
+        кількість входжень деякого числа
+        (статичні методи)
+    </h2>
+    <script>
+        class Operations {
+            static findPositiveNum(arr) {
+                return arr.flat(Infinity).reduce((count, el) => el > 0 ? count + 1 : count, 0)
+            }
+            static findNegativeNum(arr) {
+                return arr.flat(Infinity).reduce((count, el) => el < 0 ? count + 1 : count, 0)
+            }
+            static findUserNum(arr, userNum) {
+                return arr.flat(Infinity).reduce((count, el) => el === userNum ? count + 1 : count, 0)
+            }
+        }
+        let operations1 = new Operations()
+        console.log(Operations.findPositiveNum([[2, 6, 5, -4, 0, 8, -7], [2, 6, 5, -4, 0, 8, -7]]))
+        console.log(Operations.findNegativeNum([2, 6, 5, -4, 0, 8, -7]))
+        let findUserNum = parseInt(prompt('Введіть шукане число'))
+        console.log(Operations.findUserNum([2, 6, 5, -4, 0, 8, -7, 5], findUserNum))
+    </script>
+</body>
+
+</html>
