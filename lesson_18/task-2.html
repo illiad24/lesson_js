@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>task 2</h1>
+    <h2>
+        Задача 2. Зробити конвертер валют (курси валют – константи у скрипті)
+    </h2>
+    <form action="#" class="form">
+        <div class="form__line">
+            <label for="grnSum">Сума в гривнях</label>
+            <input type="number" id="grnSum">
+        </div>
+        <button type="button" class="form__button " id="convert">Конвертувати</button>
+        <div class="form__line">
+            <label for="euroSum">Сума в євро</label>
+            <input type="number" id="euroSum" disabled>
+        </div>
+        <div class="form__line">
+            <label for="dollarSum">Сума в долари</label>
+            <input type="number" id="dollarSum" disabled>
+        </div>
+    </form>
+    <script>
+        const dollarRate = 37.44
+        const euroRate = 41
+        function convert() {
+            const grnSum = parseFloat(document.getElementById('grnSum').value)
+            let dollarField = document.getElementById('dollarSum')
+            let euroField = document.getElementById('euroSum')
+            const dollarConvert = grnSum / dollarRate
+            const euroConvert = grnSum / euroRate
+            dollarField.value = dollarConvert.toFixed(2)
+            euroField.value = euroConvert.toFixed(2)
+        }
+        window.onload = function () {
+            // document.getElementById('grnSum').oninput = convert
+            document.getElementById('convert').onclick = convert
+        }
+    </script>
+</body>
+
+</html>

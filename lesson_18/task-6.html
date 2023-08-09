@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .column {
+            display: grid;
+            justify-content: start;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 6 </h1>
+    <h2>
+        Задача 6. Користувач задає кількість оцінок і натискає на кнопку «get table».
+        В результаті формується таблиця з input, куди користувач вводить оцінки.
+        Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+    </h2>
+    <div class="wrap">
+        <label for="markNum">Кількість оцінок</label>
+        <input type="number" id="markNum">
+    </div>
+    <button id="get-table">get table</button>
+    <script>
+        function getTable() {
+            let existingTable = document.querySelector('.column')
+            if (existingTable) {
+                existingTable.remove()// при новому кліці всі попередні таблиці видаляються 
+            }
+            let markNum = parseInt(document.getElementById('markNum').value)
+            if (isNaN(markNum) || markNum < 1) throw new Error('error')
+            let column = document.createElement('div')
+            column.classList.add('column')
+            let table = document.createElement('table')
+            let tr = document.createElement('tr')
+            table.append(tr)
+            for (let j = 0; j < markNum; j++) {
+                let td = document.createElement('td')
+                let input = document.createElement('input')
+                input.classList.add('mark-input')
+                input.type = 'number'
+                tr.append(td)
+                td.append(input)
+            }
+            column.append(table)
+            let button = document.createElement('button')
+            button.innerHTML = 'get sum'
+            button.id = 'get-average'
+            column.append(button)
+            document.body.append(column)
+            document.getElementById('get-average').onclick = getAverage
+        }
+        function getAverage() {
+            let inputsValues = document.querySelectorAll('.mark-input')
+            let sum = 0
+            for (const inp of inputsValues) {
+                if (isNaN(inp.value) || inp.value < 1) throw new Error('error')
+                sum += parseInt(inp.value)
+            }
+            let averageSum = document.createElement('div')
+            document.body.append(averageSum)
+            let averageMark = sum / inputsValues.length
+            averageSum.innerHTML = `average mark = ${averageMark}`
+        }
+        window.onload = function () {
+            document.getElementById('get-table').onclick = getTable
+
+        }
+    </script>
+</body>
+
+</html>

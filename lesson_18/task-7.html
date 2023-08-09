@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .column {
+            display: grid;
+            justify-content: start;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        Задача 7. Подорож складається з 3 етапів.
+        На кожному етапі користувач може вибрати один з видів транспорту
+        (авто, автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx)
+        та одного з 3-х гідів(використати - radio buttons). Ціни визначте самі.
+        Підрахувати загальну вартість.
+
+    </h2>
+
+    <form id="travelForm">
+        <label for="transport">Choose Transport:</label>
+        <select id="transport" class="transport">
+            <option value="500">Car</option>
+            <option value="350">Bus</option>
+            <option value="1000">Plane</option>
+        </select><br>
+
+        <label>Choose Meals:</label>
+        <input type="checkbox" value="30" class="checkbox">Breakfast
+        <input type="checkbox" value="70" class="checkbox">Lunch
+        <input type="checkbox" value="50" class="checkbox">Dinner
+        <br>
+
+        <label>Choose Guide:</label>
+        <input type="radio" name="guide" value="210" class="guide">Guide 1
+        <input type="radio" name="guide" value="300" class="guide">Guide 2
+        <input type="radio" name="guide" value="160" class="guide">Guide 3
+        <br>
+
+        <!-- <button type="button" class="button">Calculate Cost</button> -->
+    </form>
+    <form id="travelForm">
+        <label for="transport2">Choose Transport:</label>
+        <select id="transport2" class="transport">
+            <option value="500">Car</option>
+            <option value="350">Bus</option>
+            <option value="1000">Plane</option>
+        </select><br>
+
+        <label>Choose Meals:</label>
+        <input type="checkbox" value="30" class="checkbox">Breakfast
+        <input type="checkbox" value="70" class="checkbox">Lunch
+        <input type="checkbox" value="50" class="checkbox">Dinner
+        <br>
+
+        <label>Choose Guide:</label>
+        <input type="radio" name="guide2" value="210" class="guide">Guide 1
+        <input type="radio" name="guide2" value="300" class="guide">Guide 2
+        <input type="radio" name="guide2" value="160" class="guide">Guide 3
+        <br>
+
+        <!-- <button type="button" class="button">Calculate Cost</button> -->
+    </form>
+    <form id="travelForm">
+        <label for="transport3">Choose Transport:</label>
+        <select id="transport3" class="transport">
+            <option value="500">Car</option>
+            <option value="350">Bus</option>
+            <option value="1000">Plane</option>
+        </select><br>
+        <label>Choose Meals:</label>
+        <input type="checkbox" value="30" class="checkbox">Breakfast
+        <input type="checkbox" value="70" class="checkbox">Lunch
+        <input type="checkbox" value="50" class="checkbox">Dinner
+        <br>
+
+        <label>Choose Guide:</label>
+        <input type="radio" name="guide3" value="210" class="guide">Guide 1
+        <input type="radio" name="guide3" value="300" class="guide">Guide 2
+        <input type="radio" name="guide3" value="160" class="guide">Guide 3
+        <br>
+
+        <button type="button" id="button" class="button">Calculate Cost</button>
+    </form>
+
+    <div id="totalCost"></div>
+
+    <script>
+        // function counterSum() {
+
+        //     let count = 1
+        //     function getTripSum() {
+        //         const button = document.getElementById('button')
+        //         let transportPrice = parseFloat(document.getElementById('transport').value)
+        //         let meals = document.querySelectorAll('.checkbox')
+        //         const guidePrice = document.querySelectorAll('.guide')
+        //         let totalSum = 0
+        //         let sum = 0
+
+        //         sum += transportPrice
+        //         for (const inp of meals) {
+        //             if (inp.checked) sum += parseFloat(inp.value)
+        //         }
+        //         for (const inp of guidePrice) {
+        //             if (inp.checked) sum += parseFloat(inp.value)
+        //         }
+        //         //========================================================================================================================================================
+        //         const costStep = document.createElement('div')
+        //         costStep.innerHTML = `${count} етап <span class='step-sum'>${sum}</span`
+        //         ++count
+        //         document.body.append(costStep)
+        //         //========================================================================================================================================================
+        //         if (count > 3) {
+        //             button.disabled = true
+        //             const totalCost = document.querySelector('#totalCost')
+        //             let allStepSum = document.querySelectorAll('.step-sum')
+        //             for (const oneSum of allStepSum) {
+        //                 totalSum += parseFloat(oneSum.textContent)
+        //             }
+        //             totalCost.innerHTML = `Total cost ${totalSum}`
+        //         }
+        //     }
+        //     return getTripSum
+        // }
+        // window.onload = function () {
+        //     document.getElementById('button').onclick = counterSum()
+        // }
+        function getTripSum() {
+            let transportPrice = document.querySelectorAll('.transport')
+            let meals = document.querySelectorAll('.checkbox')
+            const guidePrice = document.querySelectorAll('.guide')
+
+            let sum = 0
+
+            for (const item of transportPrice) {
+                sum += parseFloat(item.value)
+            }
+            for (const inp of meals) {
+                if (inp.checked) sum += parseFloat(inp.value)
+            }
+            for (const inp of guidePrice) {
+                if (inp.checked) sum += parseFloat(inp.value)
+            }
+            const totalCost = document.querySelector('#totalCost')
+            totalCost.innerHTML = `Total cost ${sum}`
+            //========================================================================================================================================================
+        }
+        window.onload = function () {
+            document.getElementById('button').onclick = getTripSum
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Розробити калькулятор
+    </h2>
+    <form action="#" class="form">
+        <div class="form__line">
+            <label for="firstNum">First number</label>
+            <input type="number" id="firstNum">
+        </div>
+        <div class="form__line">
+            <label for="secondNum">second number</label>
+            <input type="number" id="secondNum">
+        </div>
+        <div class="form__buttons">
+            <button type="button" class="form__button add" id=" add">додати </button>
+            <button type="button" class="form__button subtract" id="subtract">відняти</button>
+            <button type="button" class="form__button product" id="product">помножити</button>
+            <button type="button" class="form__button division" id="division">поділити</button>
+        </div>
+        <div class="form__result">
+            <label for="result">Результат</label>
+            <input type="text" id="result" disabled>
+        </div>
+    </form>
+    <script>
+        // function add() {
+        //     const firstNum = parseFloat(document.getElementById('firstNum').value)
+        //     const secondNum = parseFloat(document.getElementById('secondNum').value)
+        //     const result = document.getElementById('result')
+        //     let sum = firstNum + secondNum
+        //     console.log(sum)
+        //     result.value = sum
+
+        // }
+        // function subtract() {
+        //     const firstNum = parseFloat(document.getElementById('firstNum').value)
+        //     const secondNum = parseFloat(document.getElementById('secondNum').value)
+        //     const result = document.getElementById('result')
+        //     let subtract = firstNum - secondNum
+        //     console.log(subtract)
+        //     result.value = subtract
+        // }
+        // function product() {
+        //     const firstNum = parseFloat(document.getElementById('firstNum').value)
+        //     const secondNum = parseFloat(document.getElementById('secondNum').value)
+        //     const result = document.getElementById('result')
+        //     let product = firstNum * secondNum
+        //     console.log(product)
+        //     result.value = product
+        // }
+        // function division() {
+        //     const firstNum = parseFloat(document.getElementById('firstNum').value)
+        //     const secondNum = parseFloat(document.getElementById('secondNum').value)
+        //     const result = document.getElementById('result')
+        //     let division = firstNum / secondNum
+        //     console.log(division)
+        //     result.value = division
+        // }
+        // function calculate(operation) {
+        //     const firstNum = parseFloat(document.getElementById('firstNum').value)
+        //     const secondNum = parseFloat(document.getElementById('secondNum').value)
+        //     const result = document.getElementById('result')
+        //     let   
+        // }
+        // window.onload = function () {
+        //     document.getElementById('add').onclick = add;
+        //     document.getElementById('subtract').onclick = subtract
+        //     document.getElementById('product').onclick = product
+        //     document.getElementById('division').onclick = division
+        // }
+        //========================================================================================================================================================
+        document.addEventListener('click', function (e) {
+            const firstNum = parseFloat(document.getElementById('firstNum').value)
+            const secondNum = parseFloat(document.getElementById('secondNum').value)
+            const result = document.getElementById('result')
+            const targElement = e.target
+            let resValue
+            if (targElement.closest('.add')) {
+                resValue = firstNum + secondNum
+                result.value = resValue
+            }
+            if (targElement.closest('.subtract')) {
+                resValue = firstNum - secondNum
+                result.value = resValue
+            }
+            if (targElement.closest('.product')) {
+                resValue = firstNum * secondNum
+                result.value = resValue.toFixed(2)
+            }
+            if (targElement.closest('.division')) {
+                resValue = firstNum / secondNum
+                result.value = resValue.toFixed(2)
+            }
+        })
+    </script>
+</body>
+
+</html>

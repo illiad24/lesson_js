@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Наперед задано у скрипті масив зі списком бажань.
+        Після завантаження сторінки випадковим чином вибираються
+        3 і відображаються у окремих div (їх треба створити і додати на сторінку)
+    </h2>
+    <script>
+
+        function getWishes() {
+            const wishes = ['Money', 'big money', 'peace', 'friends', 'heals', 'beer']
+            for (let i = 0; i < 3; i++) {
+                const getRandIndex = 0 + Math.floor(Math.random() * (wishes.length - 1 - 0 + 1))
+                let div = document.createElement('div')
+                div.innerHTML = `${wishes[getRandIndex]}`
+                document.body.append(div)
+            }
+        }
+        window.onload = function () {
+            getWishes()
+        }
+    </script>
+</body>
+
+</html>

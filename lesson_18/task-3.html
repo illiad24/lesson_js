@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        Задача 3. Користувач задає рік народження. Визначити кількість років користувача.
+
+    </h2>
+    <input type="text" id="yearOfBirthaday">
+    <div class="user-age"></div>
+    <script>
+        function getYear() {
+            const year = 2023
+            const userYearOfBirthaday = parseInt(document.getElementById('yearOfBirthaday').value)
+            let calculationUserYear = year - userYearOfBirthaday
+            const userAge = document.querySelector('.user-age')
+            userAge.innerHTML = `ковистувачу ${calculationUserYear} років`
+        }
+        window.onload = function () {
+            document.getElementById('yearOfBirthaday').oninput = getYear
+        }
+    </script>
+</body>
+
+</html>

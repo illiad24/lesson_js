@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 5 </h1>
+    <h2>
+        Задача 5. Користувач задає кількість рядків і стовпців.
+        Відобразити таблицю, у клітинках якої знаходяться числа 1, 2, 3, …
+    </h2>
+    <script>
+        function creativeTable(rowNum, colNum) {
+            let count = 1
+            const table = document.createElement('table')
+            for (let i = 0; i < rowNum; i++) {
+                let tr = document.createElement('tr')
+                for (let j = 0; j < colNum; j++) {
+                    let td = document.createElement('td')
+
+                    td.innerHTML = `${count}`
+                    tr.append(td)
+                    count++
+                }
+
+                table.append(tr)
+            }
+            document.body.append(table)
+        }
+        window.onload = function () {
+            creativeTable(3, 4)
+        }
+    </script>
+</body>
+
+</html>
