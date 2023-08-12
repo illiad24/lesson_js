@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .snowflake {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        /* animation: fall 10000ms linear infinite; */
+    }
+
+    .snowflake img {
+        width: 100px;
+    }
+
+    /* @keyframes fall {
+        0% {
+            top: 0;
+        }
+
+        100% {
+            top: 100%;
+        }
+    } */
+</style>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        7. Задача 1. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0)
+        і з випадковою швидкістю рухається вниз (у setInterval викликати метод, у якому додавати крок до top).
+        Як тільки сніжинка досягає нижньої частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0).
+    </h2>
+
+    <script>
+        class Snowflake {
+
+            getRandNum(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+            snowflakeMove() {
+                const maxTop = innerHeight - 100
+
+                let currentTop = parseFloat(this.snowflake.style.top) || 0;
+                let randInterval = this.getRandNum(10, 50)
+
+                setInterval(() => {
+                    currentTop += 1;
+                    if (currentTop > maxTop) {
+                        currentTop = 0
+                        this.snowflake.style.top = 0
+                        setTimeout(() => {
+                            this.snowflake.style.top = currentTop + 'px';
+                        }, 10);
+                    } else {
+                        this.snowflake.style.top = currentTop + 'px';
+                    }
+
+                }, randInterval);
+            }
+
+            render() {
+                this.snowflake = document.createElement('div')
+                this.snowflake.classList.add('snowflake')
+                let snowflakeImg = document.createElement('img')
+                snowflakeImg.setAttribute('src', `img/snowflake.jpg`)
+                snowflakeImg.setAttribute('alt', 'image')
+                this.snowflake.append(snowflakeImg)
+                document.body.append(this.snowflake)
+            }
+        }
+        window.onload = function () {
+            let snowflake = new Snowflake()
+            snowflake.render()
+            snowflake.snowflakeMove()
+        }
+    </script>
+</body>
+
+</html>

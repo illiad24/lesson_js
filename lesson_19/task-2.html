@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    body {
+        display: grid;
+        gap: 5px;
+        justify-content: start;
+    }
+
+    input {
+        display: block;
+        justify-self: start;
+    }
+</style>
+
+<body>
+    <h1>task 2</h1>
+    <h2>
+        Задача 2. Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично
+        заповнювати інші усі попередні у спадному порядку
+        (кожен попередній має значення на 1 менше за наступний),
+        усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+
+    </h2>
+    <script>
+        // class Inputs {
+        // constructor(count) {
+        //     this.count = count
+        // }
+        // changeNum() {
+        //     let inputs = document.querySelectorAll('input')
+        //     for (let i = 0; i < inputs.length; i++) {
+        //         let inpValue = parseInt(inputs[i].value);
+
+        //         // Заповнення попередніх інпутів у спадному порядку
+        //         for (let j = i - 1; j >= 0; j--) {
+        //             inputs[j].value = inpValue - (i - j);
+        //         }
+
+        //         // Заповнення наступних інпутів
+        //         for (let j = i + 1; j < inputs.length; j++) {
+        //             inputs[j].value = inpValue + (j - i);
+        //         }
+        //     }
+        // }
+        // render() {
+        //     for (let i = 0; i < this.count; i++) {
+        //         let input = document.createElement('input')
+        //         input.setAttribute('type', 'number')
+        //         input.oninput = this.changeNum.bind(this)
+        //         document.body.append(input)
+        //     }
+        // }
+        // }
+
+
+        class Inputs {
+            constructor(count) {
+                this.count = count;
+            }
+            changeNum(e) {
+                let input = e.target
+                let inputValue = parseInt(input.value)
+                while (input.nextElementSibling !== null) {
+                    input.nextElementSibling.value = inputValue += 1
+                    input = input.nextElementSibling
+                }
+                while (input.previousElementSibling !== null) {
+                    input.previousElementSibling.value = inputValue -= 1
+                    input = input.previousElementSibling
+                }
+            }
+            render() {
+                for (let i = 0; i < this.count; i++) {
+                    this.input = document.createElement('input')
+                    this.input.setAttribute('type', 'number')
+                    this.input.oninput = this.changeNum.bind(this)
+                    this.input.classList.add(`${i + 1}`)
+                    document.body.append(this.input)
+                }
+                
+            }
+        }
+        window.onload = function () {
+            let inputs = new Inputs(5)
+            inputs.render()
+        }
+    </script>
+</body>
+
+</html>

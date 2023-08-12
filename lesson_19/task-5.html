@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .product-list {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .item-product__image img {
+
+        width: 150px;
+    }
+
+    .item-product {
+        position: relative;
+    }
+
+    .item-product__category {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 8px;
+        padding: 5px;
+    }
+
+    .item-product__category.red {
+        background-color: red;
+    }
+
+    .item-product__category.yellow {
+        background-color: yellow;
+    }
+
+    a {
+        text-decoration: none;
+        color: initial;
+    }
+
+    .item-product--green {
+        border: 3px solid green;
+    }
+</style>
+
+<body>
+    <h1>task 5 </h1>
+    <h2>
+        Задача 5. Відображаємо картки товарів, які користувач може вибирати.
+        Вибраний товар має зелену рамку (при кліку робити toogle з класом вибраного елемента)
+    </h2>
+    <div class="product-list">
+        <!-- <div class="item-product">
+            <div class="item-product__category"></div>
+            <div class="item-product__image">
+                <img src="@img" alt="">
+            </div>
+            <div class="item-product__title"></div>
+            <div class="item-product__price"></div>
+        </div> -->
+    </div>
+    <script>
+        class Products {
+            constructor(initData) {
+                Object.assign(this, initData)
+            }
+            chageBorder() {
+                let item = this
+                item.classList.toggle('item-product--green')
+            }
+            render(containerName) {
+                let productItem = document.createElement('a')
+                productItem.setAttribute('href', '#')
+                productItem.classList.add('item-product')
+                productItem.onclick = this.chageBorder
+                let imgDiv = document.createElement('div')
+                imgDiv.classList.add('item-product__image')
+                productItem.append(imgDiv)
+                let img = document.createElement('img')
+                img.setAttribute('src', `${this.imgSrc}`)
+                img.setAttribute('alt', `${this.alt}`)
+                imgDiv.append(img)
+                let title = document.createElement('div')
+                title.classList.add('item-product__title')
+                title.innerText = this.title
+                productItem.append(title)
+                let price = document.createElement('div')
+                price.classList.add('item-product__price')
+                price.innerText = this.price + '$'
+                productItem.append(price)
+                let category = document.createElement('div')
+                category.classList.add('item-product__category')
+                category.innerText = this.category.type
+                category.classList.add(`${this.category.color}`)
+                productItem.append(category)
+                if (containerName)
+                    document.querySelector(containerName).append(productItem)
+            }
+        }
+        productList = [
+            {
+                imgSrc: 'img/chair1.jpg',
+                title: 'product 1 ',
+                price: '4500',
+                alt: 'image',
+                category: {
+                    type: 'top',
+                    color: 'yellow'
+                }
+            },
+            {
+                imgSrc: 'img/chair2.jpg',
+                title: 'product 2 ',
+                price: '3000',
+                alt: 'image',
+                category: {
+                    type: 'sale',
+                    color: 'red'
+                }
+            },
+            {
+                imgSrc: 'img/chair3.jpg',
+                title: 'product 3 ',
+                alt: 'image',
+                price: '8000',
+                category: {
+                    type: 'top',
+                    color: 'yellow'
+                }
+            },
+        ]
+        window.onload = function () {
+            for (const product of productList) {
+                new Products(product).render('.product-list')
+            }
+        }
+    </script>
+</body>
+
+</html>

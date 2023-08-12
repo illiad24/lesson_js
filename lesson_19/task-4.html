@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    tr,
+    td {
+        border: 1px solid #000;
+    }
+
+    .red-border {
+        border: 5px solid red;
+    }
+</style>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Дано 3 таблиці розмірності 3*3 з випадковими числами.
+        Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона рамка
+        (спробуйте додати можливість відображення кількості кліків біля назви таблиці з використанням
+        відповідно доданого для цього атрибута).
+
+    </h2>
+    <div class="wrap"></div>
+    <script>
+        class Tables {
+            constructor(tableNum, rowNum, columnNum, minNum, maxNum) {
+                this.tableNum = tableNum
+                this.rowNum = rowNum
+                this.columnNum = columnNum
+                this.minNum = minNum
+                this.maxNum = maxNum
+            }
+            getRandNum(min, max) {
+                min ??= this.minNum
+                max ??= this.maxNum
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+            cellClick() {
+                const cell = this
+                const table = cell.closest('.table')
+                // table.style.border = '5px solid red';
+                // 2 варіант через клас Щоб додавалось , забиралось
+                table.classList.toggle('red-border')
+                // -------------------------------
+                let tableNext = table.nextElementSibling
+                let tableNextValue = parseInt(table.getAttribute('count'))
+                tableNextValue += 1
+                table.setAttribute('count', tableNextValue)
+                tableNext.innerText = `${tableNextValue}`
+            }
+            render(containerName) {
+                for (let i = 0; i < this.tableNum; i++) {
+                    let table = document.createElement('table')
+                    table.classList.add('table')
+                    table.setAttribute('count', 0)
+                    let div = document.createElement('div')
+                    let tableCount = parseInt(table.getAttribute('count'))
+                    div.classList.add('count')
+                    div.innerText = `${tableCount}`
+                    for (let rowNum = 0; rowNum < this.rowNum; rowNum++) {
+                        let tr = document.createElement('tr')
+                        for (let columnNum = 0; columnNum < this.columnNum; columnNum++) {
+                            let randNum = this.getRandNum()
+                            let td = document.createElement('td')
+                            td.innerText = `${randNum}`
+                            td.onclick = this.cellClick
+                            tr.append(td)
+                        }
+                        table.append(tr)
+                    }
+                    if (containerName)
+                        document.querySelector(containerName).append(table)
+                    table.after(div)
+                }
+            }
+        }
+        window.onload = function () {
+            let tables = new Tables(3, 3, 3, 0, 10)
+            tables.render('.wrap')
+        }
+    </script>
+</body>
+
+</html>

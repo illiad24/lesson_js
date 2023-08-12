@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .sportsman-items {
+        display: flex;
+        gap: 20px;
+        color: #fff;
+    }
+
+    .all-sportsman {
+        padding: 20px;
+        background-color: rgb(0, 0, 0);
+    }
+
+    .sportsman {
+        color: #fff;
+        padding: 10px;
+    }
+
+    .sportsman:hover {
+        background-color: green;
+    }
+
+    .team {
+        padding: 20px;
+        background-color: rgb(65, 92, 45);
+    }
+
+    .team .sportsman:hover {
+        background-color: red;
+    }
+</style>
+
+<body>
+    <h1>task 6 </h1>
+    <h2>
+        Задача 6. Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні.
+        При цьому є два стовпці. В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний.
+        При натисканні на зелену стрілку спортсмен переміщається у список для змагань.
+        При натисканні на червону стрілку спортсмен переміщається у загальний список.
+    </h2>
+    <!-- <div>
+        усі
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>
+        selected
+        <div></div>
+    </div> -->
+    <div class="sportsman-items">
+
+    </div>
+    <script>
+        class Sportsman {
+            constructor(sportsman) {
+                this.sportsman = sportsman
+                // this.number = number
+            }
+            sportsmanMoving() {
+                const listItem = this.closest('.sportsman')
+                const team = document.querySelector('.team')
+
+                const allTeam = document.querySelector('.all-sportsman')
+                console.log(allTeam.childNodes.length)
+                console.log(team.childNodes.length)
+                if (listItem) {
+                    const isInTeam = listItem.closest('.team') !== null
+
+                    if (isInTeam) {
+                        allTeam.append(listItem)
+                    } else {
+                        team.append(listItem)
+                    }
+                }
+
+            }
+            render(containerName) {
+                let ollSportsman = document.createElement('div')
+                ollSportsman.classList.add('all-sportsman')
+                let allTitle = document.createElement('div')
+                allTitle.innerText = 'Уся команда'
+                ollSportsman.append(allTitle)
+                for (let i = 0; i < this.sportsman.length; i++) {
+                    let sportsmanPerson = document.createElement('div')
+                    sportsmanPerson.classList.add('sportsman')
+                    sportsmanPerson.innerText = `${this.sportsman[i]}`
+                    sportsmanPerson.onclick = this.sportsmanMoving
+                    ollSportsman.append(sportsmanPerson)
+                }
+                let team = document.createElement('div')
+                team.classList.add('team')
+                let teamTitle = document.createElement('div')
+                teamTitle.innerText = 'список вибраних гравців'
+                team.append(teamTitle)
+                if (containerName) {
+                    document.querySelector(containerName).append(ollSportsman)
+                    document.querySelector(containerName).append(team)
+                }
+            }
+        }
+        let sportsmanList = ['ivan', 'stepan', 'olga', 'den', 'alan']
+        window.onload = function () {
+            let sportsman = new Sportsman(sportsmanList)
+            sportsman.render('.sportsman-items')
+        }
+    </script>
+</body>
+
+</html>
