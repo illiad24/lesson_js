@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .tank {
+        position: absolute;
+        transition: all 0.3s;
+    }
+
+    .boom {
+        display: none;
+    }
+
+    img {
+
+        width: 80px;
+    }
+</style>
+
+<body>
+    <!-- <h1>task 2</h1> -->
+    <h2>
+        <!-- Задача 2. Байрактар.
+        З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки,
+        які їдуть вниз. При кліку на танк він вибухає і зникає з екрану. -->
+
+    </h2>
+    <script>
+        class Tank {
+            constructor(src) {
+                this.src = src
+            }
+            getRandNum(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+
+
+            tankMove(interval) {
+                this.tank.style.top = 0
+                this.tank.style.left = this.getRandNum(0, 100) + '%'
+                let count = 0
+                setInterval(() => {
+                    count++
+                    this.tank.style.top = count + 'px'
+
+                }, interval);
+            }
+            tankKill() {
+                this.tank.innerText = 'танк вибухнув'
+                setTimeout(() => {
+                    this.tank.remove()
+                }, 100);
+
+            }
+
+            render() {
+                let tank = document.createElement('div')
+                console.log(this.src)
+                let tankImg = document.createElement('img')
+                tankImg.setAttribute('src', this.src)
+                tank.append(tankImg)
+                tank.classList.add('tank')
+                document.body.append(tank)
+                this.tank = tank
+
+                this.tank.onclick = this.tankKill.bind(this)
+                this.tankMove(100)
+            }
+        }
+        window.onload = function () {
+            let tan1 = new Tank('img/tank.jpg')
+            tan1.render()
+            let tan2 = new Tank('img/tank.jpg')
+            tan2.render()
+            let tan3 = new Tank('img/tank.jpg')
+            tan3.render()
+            let tan4 = new Tank('img/tank.jpg')
+            tan4.render()
+        }
+    </script>
+</body>
+
+</html>

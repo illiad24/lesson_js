@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .star {
+        position: absolute;
+        transition: all 0.9s;
+    }
+
+    img {
+        transition: all 0.9s;
+    }
+</style>
+
+<body>
+    <!-- <h1>task 1 </h1> -->
+    <h2>
+        <!-- Задача 1. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану.
+        Кожна зірка (це екземпляр класу Star) з певним кроком і інтервалом збільшується
+        від мінімального до максимального розміру. Як тільки досягнути максимального розміру
+        зірочка повинна з’являтися у іншій випадковій позиції. -->
+    </h2>
+    <script>
+        class Star {
+            constructor(src) {
+                this.src = src
+
+            }
+            getRandNum(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+            changeSize(minWidth, maxWidth) {
+                this.starDiv.style.top = this.getRandNum(0, 100) + '%'
+                this.starDiv.style.left = this.getRandNum(0, 100) + '%'
+                let currentSize = minWidth
+                this.starImg.style.width = currentSize + 'px'
+                let interval = setInterval(() => {
+                    currentSize += 1
+                    this.starImg.style.width = currentSize + 'px'
+                    if (currentSize >= maxWidth) {
+                        clearInterval(interval)
+                        currentSize = minWidth
+                        this.changeSize(minWidth, maxWidth)
+                    }
+                }, 100)
+            }
+            render() {
+                let starDiv = document.createElement('div')
+                let starImg = document.createElement('img')
+                starImg.setAttribute('src', this.src)
+                starDiv.append(starImg)
+                starDiv.classList.add('star')
+                document.body.append(starDiv)
+                this.starDiv = starDiv
+                this.starImg = starImg
+                this.changeSize(10, 50)
+            }
+        }
+        window.onload = function () {
+            let star1 = new Star('img/snowflake.jpg')
+            star1.render()
+            let star2 = new Star('img/snowflake.jpg')
+            star2.render()
+            let star3 = new Star('img/snowflake.jpg')
+            star3.render()
+            let star4 = new Star('img/snowflake.jpg')
+            star4.render()
+        }
+    </script>
+</body>
+
+</html>

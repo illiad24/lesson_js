@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    input {
+        display: block;
+    }
+</style>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        Задача 3. На формі вводять 7 числових значень (вік, зріст, вага, заробітна плата, стаж, номер відділу, порядковий номер).
+        Додати подію обробки події click на форму і якщо клік на внутрішньому input, то автоматично замінювати значення його на 0.
+        Використати делегування
+
+    </h2>
+    <form action="#" id="form"></form>
+    <script>
+        class Form {
+            formClick(e) {
+                let targetElement = e.target
+                if (targetElement.tagName === 'INPUT') targetElement.value = 0
+            }
+            render() {
+                const inputLabels = ['Age', 'Height', 'Weight', 'Salary', 'Experience', 'Department', 'Order']
+                let form = document.getElementById('form')
+                inputLabels.forEach(label => {
+                    const input = document.createElement('input')
+                    input.type = 'number'
+                    input.id = label.toLowerCase()
+                    input.placeholder = label
+
+                    form.append(input)
+                    form.onclick = this.formClick
+                })
+            }
+        }
+        let form = new Form()
+        form.render()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. На сторінці міститься певна кількість кнопок і інпутів.
+        Підраховувати загальну кількість кліків окремо на кнопках і окремо на інпутах.
+    </h2>
+    <div class="wrap"></div>
+    <form action="#" id="form"></form>
+    <script>
+        class FormElements {
+            constructor(btnNum, inpNum) {
+                this.btnNum = btnNum
+                this.inpNum = inpNum
+                this.btnClickCount = 0
+                this.inpClickCount = 0
+            }
+            formClick(e) {
+                const targetElement = e.target
+                if (targetElement.tagName === 'BUTTON') {
+                    this.btnClickCount++
+                    this.countBtnSpan.innerText = this.btnClickCount
+                }
+                if (targetElement.tagName === 'INPUT') {
+                    this.inpClickCount++
+                    this.countInpSpan.innerText = this.inpClickCount
+                }
+            }
+            render() {
+                let wrap = document.querySelector('.wrap')
+                let countBtn = document.createElement('div')
+                countBtn.classList.add('btn-count')
+                countBtn.innerText = 'кліків  на кнопках '
+                countBtn.classList.add('btn-count')
+                let countBtnSpan = document.createElement('span')
+                countBtnSpan.innerText = '0'
+                countBtn.append(countBtnSpan)
+                wrap.append(countBtn)
+                this.countBtnSpan = countBtnSpan
+                let countInp = document.createElement('div')
+                countInp.classList.add('Inp-count')
+                countInp.innerText = 'кліків  на інпутах '
+                countInp.classList.add('inp-count')
+                let countInpSpan = document.createElement('span')
+                countInpSpan.innerText = '0'
+                countInp.append(countInpSpan)
+                wrap.append(countInp)
+                this.countInpSpan = countInpSpan
+                let form = document.getElementById('form')
+                form.onclick = this.formClick.bind(this)
+                for (let i = 0; i < this.btnNum; i++) {
+
+                    let btn = document.createElement('button')
+                    btn.innerText = 'button'
+                    form.append(btn)
+
+                }
+                for (let i = 0; i < this.inpNum; i++) {
+
+                    let inp = document.createElement('input')
+                    inp.innerText = 'input'
+                    form.append(inp)
+
+                }
+
+            }
+
+        }
+        let formEl = new FormElements(2, 2)
+        formEl.render()
+    </script>
+</body>
+
+</html>

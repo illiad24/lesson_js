@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <h1>task 5 </h1>
+    <h2>
+        Задача. Динамічний пошук. Є список працівників і поле пошуку.
+        При введенні відображаються усі, які містять вказаний фрагмент
+    </h2>
+    <div class="container"></div>
+    <script>
+        class Search {
+            onInputChange() {
+                const searchInput = new CustomEvent('searchEmployee', {
+                    detail: {
+                        findText: this.input.value
+                    }
+                })
+                this.input.dispatchEvent(searchInput)
+            }
+            render(container) {
+                let input = document.createElement('input')
+                input.setAttribute('type', 'text')
+                input.addEventListener('change', this.onInputChange.bind(this))
+                this.input = input
+                if (container)
+                    document.querySelector(container).append(this.input)
+            }
+        }
+
+        class EmployeeList {
+            constructor(data) {
+                this.data = data
+            }
+            sortList(event) {
+                let searchText = event.detail.findText;
+                const employeeDivs = document.querySelectorAll('.employeeDiv');
+                employeeDivs.forEach((div) => {
+                    const name = div.textContent.toLowerCase()
+                    if (name.includes(searchText)) {
+                        div.style.display = 'block'
+                    } else {
+                        div.style.display = 'none'
+                    }
+                });
+            }
+            render() {
+                let employeeContainer = document.createElement('div')
+                for (const employee of this.data) {
+                    let employeeDiv = document.createElement('div')
+                    employeeDiv.textContent = `${employee.firstName} ${employee.secondName}`
+                    employeeDiv.classList.add('employeeDiv')
+                    employeeContainer.append(employeeDiv)
+                }
+                document.querySelector('.container').append(employeeContainer)
+            }
+        }
+
+        let employeeList = [
+            {
+                firstName: 'ivan',
+                secondName: 'ruba'
+            },
+            {
+                firstName: 'olga',
+                secondName: 'som'
+            },
+            {
+                firstName: 'sasha',
+                secondName: 'bereza'
+            }
+        ]
+        let r1 = new Search()
+        r1.render('.container')
+
+        let r2 = new EmployeeList(employeeList)
+        r2.render()
+        r1.input.addEventListener('searchEmployee', r2.sortList)
+    </script>
+</body>
+
+</html>
