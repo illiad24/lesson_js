@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Створити клас Client
+        Властивості
+        ID
+        ПІБ
+        Кількість грошей на рахунку
+        Методи
+        Додавання грошей
+        Зняття грошей
+        ToString
+
+        На основі цього класу створити клас GoldenClient
+        Властивості
+        ID
+        ПІБ
+        Кількість грошей на рахунку
+        Ліміт кредитних коштів
+        Відсоток за використання кредитних коштів
+        Методи
+        Додавання грошей
+        Зняття грошей
+        Визначення пені за використання кредитних коштів
+        ToString
+
+
+    </h2>
+    <div class="container">
+
+    </div>
+    <script>
+        class Client {
+            constructor({ id, userName, totalBalance }) {
+                this.id = id
+                this.userName = userName
+                this.totalBalance = totalBalance
+            }
+            addMoney() {
+                let userValue = parseFloat(this.addMoneyInp.value)
+
+                let avaibleSum = parseFloat(this.totalBalanceSpan.innerText)
+
+                if (!isNaN(userValue)) {
+                    avaibleSum += userValue
+                    this.totalBalanceSpan.innerText = avaibleSum
+                    this.addMoneyInp.value = ''
+                } else throw new Error('error')
+
+            }
+            withdrawalMoney() {
+                let userValue = parseFloat(this.removeMoneyInp.value)
+                let avaibleSum = parseFloat(this.totalBalanceSpan.innerText)
+                if (userValue <= avaibleSum) {
+                    avaibleSum -= userValue
+                    this.totalBalanceSpan.innerText = avaibleSum
+                    this.removeMoneyInp.value = ''
+                } else throw new Error('error')
+            }
+            render(containerName) {
+
+                let container = document.createElement('div')
+                container.classList.add('client')
+
+                let userId = document.createElement('div')
+                userId.classList.add('id')
+                container.append(userId)
+
+                let userIdText = document.createElement('span')
+                userIdText.setAttribute('id', 'idText')
+                userIdText.innerText = 'id: '
+                userId.append(userIdText)
+
+                let userIdSpan = document.createElement('span')
+                userIdSpan.setAttribute('id', 'id')
+                userIdSpan.innerText = this.id
+                userId.append(userIdSpan)
+
+
+
+                let userName = document.createElement('div')
+                userName.classList.add('user-name')
+                container.append(userName)
+
+
+                let userNameText = document.createElement('span')
+                userNameText.setAttribute('id', 'userText')
+                userNameText.innerText = ' UserName : '
+                userName.append(userNameText)
+                let userNameSpan = document.createElement('span')
+                userName.append(userNameSpan)
+
+
+                userNameSpan.setAttribute('id', 'userName')
+                userNameSpan.innerText = this.userName
+
+                let totalBalance = document.createElement('div')
+                totalBalance.classList.add('balance')
+                container.append(totalBalance)
+
+                let userBalanceText = document.createElement('span')
+                userBalanceText.setAttribute('id', 'balanceText')
+                userBalanceText.innerText = 'Balance: '
+                totalBalance.append(userBalanceText)
+
+
+                let totalBalanceSpan = document.createElement('span')
+                totalBalance.append(totalBalanceSpan)
+                totalBalanceSpan.setAttribute('id', 'balance')
+                totalBalanceSpan.innerText = this.totalBalance
+                this.totalBalanceSpan = totalBalanceSpan
+
+
+
+
+                let addMoneyWrap = document.createElement('div')
+                addMoneyWrap.classList.add('add__money')
+                let addMoneyText = document.createElement('span')
+                addMoneyText.setAttribute('id', 'addMoneyText')
+                addMoneyText.innerText = 'Введіть суму яку потрібно додати '
+                addMoneyWrap.append(addMoneyText)
+                let addMoneyInp = document.createElement('input')
+                addMoneyInp.setAttribute('type', 'number')
+                addMoneyInp.setAttribute('id', 'addMoney')
+                addMoneyWrap.append(addMoneyInp)
+                this.addMoneyInp = addMoneyInp
+                let addMoneyBtn = document.createElement('button')
+                addMoneyBtn.setAttribute('type', 'submit')
+                addMoneyBtn.setAttribute('id', 'addMoneyBtn')
+                addMoneyBtn.innerText = 'Додати'
+                addMoneyWrap.append(addMoneyBtn)
+                this.addMoneyBtn = addMoneyBtn
+
+
+
+
+                let removeMoney = document.createElement('div')
+                removeMoney.classList.add('remove__money')
+
+                let removeMoneyText = document.createElement('span')
+                removeMoneyText.setAttribute('id', 'addMoneyText')
+                removeMoneyText.innerText = 'Введіть суму яку потрібно додати '
+                removeMoney.append(removeMoneyText)
+                let removeMoneyInp = document.createElement('input')
+                removeMoneyInp.setAttribute('type', 'number')
+                removeMoneyInp.setAttribute('id', 'removeMoney')
+                removeMoney.append(removeMoneyInp)
+                let removeMoneyBtn = document.createElement('button')
+                removeMoneyBtn.setAttribute('type', 'button')
+                removeMoneyBtn.setAttribute('id', 'removeMoneyBtn')
+                removeMoney.append(removeMoneyBtn)
+                removeMoneyBtn.innerText = 'Відняти'
+                this.removeMoneyBtn = removeMoneyBtn
+                this.removeMoneyInp = removeMoneyInp
+
+                this.addMoneyBtn.onclick = this.addMoney.bind(this)
+                this.removeMoneyBtn.onclick = this.withdrawalMoney.bind(this)
+                // виведення у вказаний контейнер
+                if (containerName) {
+                    document.querySelector(containerName).append(container)
+                    document.querySelector(containerName).append(addMoneyWrap)
+                    document.querySelector(containerName).append(removeMoney)
+
+                }
+            }
+            toString() {
+                return ` id-${this.id}  userName- ${this.userName} balance - ${this.totalBalance}`
+            }
+        }
+        class GoldenClient extends Client {
+            constructor({ id, userName, totalBalance, creditLimitAmount, creditPercent }) {
+                super({ id, userName, totalBalance })
+                this.creditLimitAmount = creditLimitAmount
+                this.creditPercent = creditPercent
+                this.creditSum = creditLimitAmount
+            }
+            getCreditPercent() {
+                const withdrawnCreditSum = this.creditLimitAmount - this.creditSum
+                const percentForUsingCreditMoney = ((this.creditPercent / 100) * withdrawnCreditSum).toFixed(2)
+                return percentForUsingCreditMoney
+            }
+            getPersent() {
+                let sum = this.creditSum - this.creditLimitAmount
+                console.log(sum)
+            }
+            addMoney() {
+                super.addMoney()
+            }
+            withdrawalMoney() {
+                this.getPersent()
+                let userValue = parseFloat(this.removeMoneyInp.value)
+                let avaibleSum = parseFloat(this.totalBalanceSpan.innerText)
+                if (userValue <= avaibleSum) {
+                    avaibleSum -= userValue
+                    this.totalBalanceSpan.innerText = avaibleSum
+                    this.removeMoneyInp.value = ''
+                } else if (userValue > avaibleSum) {
+                    if (confirm('бажаєте використати кредитні гроші?')) {
+                        let creditMoney = this.creditLimitAmount;
+                        let sum = creditMoney + avaibleSum;
+                        if (sum >= userValue) {
+                            this.fineMoneySpan = this.getCreditPercent()
+                            this.totalBalanceSpan.innerText = '0'
+                            this.removeMoneyInp.value = '0'
+                            sum -= userValue
+                            this.creditLimitAmount = sum
+                            this.creditBalanceSpan.innerText = this.creditLimitAmount
+                        } else {
+                            alert('Не достатньо коштів навіть з використанням кредиту');
+                        }
+                    }
+
+                    else
+                        alert('на рахунку не достатньо коштів')
+                }
+                else throw new Error('error')
+            }
+            creditMoney() {
+
+            }
+            render(containerName) {
+                super.render(containerName)
+                let creditBalance = document.createElement('div')
+                creditBalance.classList.add('balance-credit')
+                const container = document.querySelector('.client');
+                container.append(creditBalance);
+
+                let creditBalanceText = document.createElement('span')
+                creditBalanceText.setAttribute('id', 'creditBalanceText')
+                creditBalanceText.innerText = 'Credit balance: '
+                creditBalance.append(creditBalanceText)
+
+                let creditBalanceSpan = document.createElement('span')
+                creditBalance.append(creditBalanceSpan)
+                creditBalanceSpan.setAttribute('id', 'creditBalance')
+                creditBalanceSpan.innerText = this.creditLimitAmount
+                this.creditBalanceSpan = creditBalanceSpan
+
+                let percentMoney = document.createElement('div')
+                percentMoney.innerText = 'Відсоток за використання кредитних коштів: '
+                let percentMoneySpan = document.createElement('span')
+                container.append(percentMoney)
+                percentMoneySpan.innerText = this.creditPercent + '%'
+                percentMoney.append(percentMoneySpan)
+
+                let fineMoney = document.createElement('div')
+                fineMoney.innerText = 'пеня за використання кредитних коштів: '
+                let fineMoneySpan = document.createElement('span')
+                fineMoneySpan.innerText = '0'
+                fineMoneySpan.innerText = this.getCreditPercent()
+                this.fineMoneySpan = fineMoneySpan
+                container.append(fineMoney)
+                fineMoney.append(fineMoneySpan)
+
+
+            }
+        }
+        let ivanGold = {
+            id: 21,
+            userName: 'Ivan',
+            totalBalance: 1000,
+            creditPercent: 5,
+            creditLimitAmount: 10000
+        }
+        let ivan = {
+            id: 21,
+            userName: 'Ivan',
+            totalBalance: 1000,
+        }
+        window.onload = function () {
+            // let userIvan = new GoldenClient(ivanGold)
+            // console.log(userIvan)
+            // userIvan.render('.container')
+            let userIvan = new Client(ivan)
+            console.log(userIvan)
+            userIvan.render('.container')
+        }
+        // Можна ще допрацювати з кредитними грошима, на даний момент я здався(((
+    </script>
+</body>
+
+</html>

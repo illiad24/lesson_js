@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 2. Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції
+        Вивести усіх простих клієнтів;
+        Вивести усіх клієнтів GoldenClient;
+        Знати сумарну кількість грошей на рахунку;
+    </h2>
+    <div class="container">
+
+    </div>
+    <script>
+        class Client {
+            constructor({ id, userName, totalBalance }) {
+                this.id = id
+                this.userName = userName
+                this.totalBalance = totalBalance
+            }
+        }
+        class GoldenClient extends Client {
+            constructor({ id, userName, totalBalance, creditLimitAmount, creditPercent }) {
+                super({ id, userName, totalBalance })
+                this.creditLimitAmount = creditLimitAmount
+                this.creditPercent = creditPercent
+            }
+        }
+        class Bank {
+            constructor() {
+                this.clients = []
+            }
+            addClient(client) {
+                this.clients.push(client)
+            }
+            allSimpleClients() {
+                return this.clients.filter(client => client instanceof Client && !(client instanceof GoldenClient))
+            }
+            allGoldenClients() {
+                return this.clients.filter(client => client instanceof GoldenClient)
+            }
+            totalBalance() {
+                return this.clients.reduce((total, client) => total + client.totalBalance, 0)
+            }
+        }
+        const bank = new Bank()
+        const ivan = new Client({ id: 1, userName: 'Ivan', totalBalance: 1000 })
+        const stepan = new GoldenClient({ id: 2, userName: 'stepan', totalBalance: 1500, creditLimitAmount: 5000, creditPercent: 5 })
+        bank.addClient(ivan)
+        bank.addClient(stepan)
+        const simpleClients = bank.allSimpleClients()
+        console.log('Прості клієнти:', simpleClients)
+        const goldenClients = bank.allGoldenClients()
+        console.log('Golden клієнти:', goldenClients)
+        const totalBalance = bank.totalBalance()
+        console.log('Сумарний баланс:', totalBalance)
+    </script>
+</body>
+
+</html>

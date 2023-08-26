@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <h1>task-4 </h1>
+    <h2>
+        Задача 4. Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до 12, чи не канікули)
+        та оцінку (перевіряти чи є числом, чи від 1 до 100). Вивести чи зможе він виправити оцінку
+        (якщо оцінка погана і це не останній місяць у семестрі) .
+        Обробку усіх помилок зробити з використанням відповідних класів.
+    </h2>
+    <div class="wrap">
+        <div>
+            <label>місяць навчання учня </label>
+            <input type="text" id="month">
+        </div>
+        <div>
+            <label>місяць навчання учня </label>
+            <input type="text" id="mark">
+        </div>
+        <div>
+            <button id="btn">Взнати</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        class IsNotNumberError extends Error {
+            constructor() {
+                super()
+                this.message = 'введіть числові значення від 1 до 12'
+                this.name = 'IsNotNumberError'
+            }
+        }
+        class IsNegativeNumberError extends Error {
+            constructor() {
+                super()
+                this.message = 'введіть числові значення від 1 до 12'
+                this.name = 'IsNotNumberError'
+            }
+        }
+        class IsToHightNumberError extends Error {
+            constructor() {
+                super()
+                this.message = 'введіть числові значення від 1 до 12 '
+                this.name = 'IsToHightNumberError'
+            }
+        }
+        class IsHollidayError extends Error {
+            constructor() {
+                super()
+                this.message = 'У цей місяць канікули '
+                this.name = 'IsHollidayError'
+            }
+        }
+        class IsNotFillError extends Error {
+            constructor() {
+                super()
+                this.message = 'запоніть 2 поля '
+                this.name = 'IsNotFillError'
+            }
+        }
+        function validate() {
+            const userMonthInput = document.querySelector('#month')
+            const userMarkInput = document.querySelector('#mark')
+            const userMonth = parseInt(document.querySelector('#month').value)
+            const userMark = parseInt(document.querySelector('#mark').value)
+            const userField = document.querySelector('#result')
+            try {
+                if (userMonthInput.value === '' || userMarkInput.value === '') throw new IsNotFillError()
+
+                if (userMark > 12 || userMonth > 12) throw new IsToHightNumberError()
+                if (userMark < 1 || userMonth < 1) throw new IsNegativeNumberError()
+                if (userMonth <= 8 && userMonth >= 6) throw new IsHollidayError()
+                if (isNaN(userMark) && isNaN(userMonth)) throw new IsNotNumberError()
+                if (userMonth !== 12 && userMonth !== 5 && userMark <= 6)
+                    userField.innerText = 'Оцінку можна виправити'
+                else userField.innerText = 'Оцінку неможна виправити'
+            } catch (error) {
+                alert(error.message)
+            }
+
+        }
+        const btn = document.querySelector('#btn');
+        window.onload = function () {
+            btn.addEventListener('click', validate)
+        }
+    </script>
+</body>
+
+</html>

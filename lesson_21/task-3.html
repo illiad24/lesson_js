@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    img {
+        width: 200px;
+        position: absolute;
+    }
+</style>
+
+<body>
+    <!-- <h1>task 3 </h1>/ -->
+    <h2>
+        <!-- House
+        Dog
+        Bird
+        --- властивості ---
+        Координата Х
+        Координата У
+        шлях до зображення
+        інтервал оновлення
+        --- методи ---
+        генерування елемента розмітки
+        оновлення через вказаний інтервал (збільшення або зменшення масштабу (об’єкт не рухається)
+
+        --- властивості ---
+        Координата Х
+        Координата У
+        шлях до зображення
+        інтервал оновлення
+        --- методи ---
+        генерування елемента розмітки
+        оновлення через вказаний інтервал (випадкове зміщення по горизонталі (зміна координати Х))
+
+
+        --- властивості ---
+        Координата Х
+        Координата У
+        шлях до зображення
+        інтервал оновлення
+        --- методи ---
+        генерування елемента розмітки
+        оновлення через вказаний інтервал (випадкове переміщення у довільному напрямку) -->
+
+    </h2>
+    <div class="container">
+
+    </div>
+    <script>
+        class Parameters {
+            constructor(imgSrc, coordinateX, coordinateY, interval) {
+                this.imgSrc = imgSrc
+                this.coordinateX = coordinateX
+                this.coordinateY = coordinateY
+                this.interval = interval
+            }
+            getRandNum(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1))
+            }
+            render(containerName) {
+                let img = document.createElement('img')
+                img.setAttribute('src', this.imgSrc)
+                img.style.top = this.coordinateY + '%'
+                img.style.left = this.coordinateX + '%'
+                this.img = img
+                if (containerName)
+                    document.querySelector(containerName).append(img)
+            }
+        }
+        class House extends Parameters {
+            constructor(imgSrc, coordinateX, coordinateY, interval) {
+                super(imgSrc, coordinateX, coordinateY, interval)
+            }
+            changeWidth() {
+                setInterval(() => {
+
+                    this.img.style.width = this.getRandNum(50, 300) + 'px'
+                }, this.interval)
+            }
+        }
+        class Dog extends Parameters {
+            constructor(imgSrc, coordinateX, coordinateY, interval) {
+                super(imgSrc, coordinateX, coordinateY, interval)
+            }
+            changeCoordinateX() {
+                setInterval(() => {
+
+                    this.img.style.left = this.getRandNum(0, 50) + '%'
+                }, this.interval);
+            }
+        }
+        class Bird extends Parameters {
+            constructor(imgSrc, coordinateX, coordinateY, interval) {
+                super(imgSrc, coordinateX, coordinateY, interval)
+            }
+            changeCoordinateX() {
+                setInterval(() => {
+
+                    this.img.style.left = this.getRandNum(0, 50) + '%'
+                }, this.interval);
+            }
+            changeCoordinateY() {
+                setInterval(() => {
+                    this.img.style.top = this.getRandNum(0, 50) + '&'
+                }, this.interval);
+            }
+        }
+        let house = new House('img/house-svgrepo-com.svg', 10, 10, 1000)
+        house.render('.container')
+        house.changeWidth()
+        let dog = new Dog('img/dog-svgrepo-com.svg', 10, 10, 1000)
+        dog.render('.container')
+        dog.changeCoordinateX()
+        let bird = new Bird('img/bird-media-network-svgrepo-com.svg', 10, 10, 1000)
+        bird.render('.container')
+        bird.changeCoordinateX()
+        bird.changeCoordinateY()
+    </script>
+</body>
+
+</html>
