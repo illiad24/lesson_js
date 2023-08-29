@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>task 2</h1>
+    <h2>
+        Задача 2. Вивести дату у форматі
+        “місяць – рік – вихідний/робочий”
+
+    </h2>
+    <div class="container">
+
+    </div>
+    <script>
+
+        function isWeekend(day) {
+            return day.getDay === 0 || day.getDay === 6
+        }
+        function getMonth(month) {
+            const monthNames = [
+                "Січень", "Лютий", "Березень",
+                "Квітень", "Травень", "Червень",
+                "Липень", "Серпень", "Вересень",
+                "Жовтень", "Листопад", "Грудень"
+            ];
+            return monthNames[month];
+        }
+        function outputDate() {
+            let date = new Date()
+            let nowYear = date.getFullYear()
+            let day = date.getDay()
+            let month = getMonth(date.getMonth())
+            let isWeekendText = isWeekend(date) ? 'Вихідний' : 'Робочий'
+            document.querySelector('.container').innerText = `${month} - ${nowYear} - ${isWeekendText}`
+        }
+        outputDate()
+    </script>
+</body>
+
+</html>

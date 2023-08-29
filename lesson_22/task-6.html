@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .column {
+            display: grid;
+            justify-content: start;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 6 </h1>
+    <h2>
+        Задача 6. Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.
+
+    </h2>
+    <div class="wrap">
+
+    </div>
+
+    <script>
+        function getDateRerurn(dayNum) {
+            let date = new Date()
+            date.setDate(date.getDate() + dayNum)
+            return date
+        }
+        document.querySelector('.wrap').innerHTML = ` Ви повернетесь із відпустки ${getDateRerurn(56).toLocaleString('uk-UA')}`
+    </script>
+</body>
+
+</html>

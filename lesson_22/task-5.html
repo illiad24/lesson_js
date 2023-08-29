@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 5 </h1>
+    <h2>
+        Задача 5. Користувач вводить дату народження. Визначити, скільки йому повних років.
+    </h2>
+    <div class="wrap">
+        <label>Введіть рік народження</label>
+        <input type="number" id="age">
+    </div>
+    <div class="result"></div>
+    <script>
+        let userAge = document.querySelector('#age')
+        userAge.addEventListener('input', calculateAge)
+        function calculateAge() {
+            const result = document.querySelector('.result');
+            const userAgeValue = parseInt(userAge.value)
+            const currentDate = new Date()
+            const birthYear = userAgeValue
+            const currentYear = currentDate.getFullYear()
+            const age = currentYear - birthYear
+            result.innerText = `Поточний вік: ${age} років`;
+            if (isNaN(userAgeValue)) result.innerText = `Поточний вік: не визначено`;
+        }
+
+    </script>
+</body>
+
+</html>

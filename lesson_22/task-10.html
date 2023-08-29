@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        Задача 12. Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування бульбашкою і вставкою.
+    </h2>
+    <div class="buble-start"></div>
+    <div class="insert-start"></div>
+    <script>
+        function getRandArr(arrLength, min, max) {
+            let arr = []
+            for (let i = 0; i < arrLength; i++) {
+                let getRandNum = min + Math.floor(Math.random() * (max - min + 1))
+                arr.push(getRandNum)
+            }
+            return arr
+        }
+        let arr = getRandArr(1000, 1, 800)
+        console.log(arr)
+        let arr2 = Array.from(arr)
+        let bubleStart = new Date()
+        function bubleSort(arr) {
+            do {
+                changed = false
+                for (let i = 1; i < arr.length; i++) {
+                    if (arr[i - 1] > arr[i]) {
+                        let tmp = arr[i - 1]
+                        arr[i - 1] = arr[i]
+                        arr[i] = tmp
+                        changed = true
+                    }
+                }
+            } while (changed);
+        }
+        bubleSort(arr)
+        let bubleEnd = new Date()
+        let bubleSortTime = bubleEnd - bubleStart
+        let bubleWrap = document.querySelector('.buble-start')
+        bubleWrap.innerText = `Сортування бульбашкою - ${bubleSortTime} - мс`
+        console.log(arr)
+        //========================================================================================================================================================
+        let insertStart = new Date()
+        function insertSort(arr) {
+            for (let i = 1; i < arr.length; i++) {
+                const currElement = arr[i]
+                let k = i - 1
+                while (k >= 0 && arr[k] > currElement) {
+                    arr[k + 1] = arr[k]
+                    k = k - 1
+                }
+                arr[k + 1] = currElement
+            }
+        }
+        insertSort(arr2)
+        let insertEnd = new Date()
+        let insertSortTime = insertEnd - insertStart
+        let insertWrap = document.querySelector('.insert-start')
+        insertWrap.innerText = `Сортування Вставкою - ${insertSortTime} - мс`
+        console.log(arr2)
+    </script>
+</body>
+
+</html>

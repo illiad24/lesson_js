@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 1. Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго вечора)
+    </h2>
+
+    <script>
+        let date = new Date()
+        console.log(date)
+        let hour = date.getHours()
+        console.log(hour)
+        if (hour >= 7 && hour <= 12) alert('Доброго ранку')
+        else if (hour > 12 && hour <= 18) alert('Доброго дня')
+        else if (hour >= 19 && hour <= 22) alert('Доброго Вечора')
+        else alert('Доброї ночі')
+    </script>
+</body>
+
+</html>

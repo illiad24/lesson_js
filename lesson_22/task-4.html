@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 4. Вивести назву дня
+    </h2>
+    <script>
+        let date = new Date()
+        let day = date.getDay()
+        console.log(day)
+        let message
+        switch (day) {
+            case 0:
+                message = 'Неділя'
+
+                break;
+            case 1:
+                message = 'Понеділок'
+
+                break;
+            case 2:
+                message = 'Вівторок'
+
+                break;
+            case 3:
+                message = 'середа'
+
+                break;
+            case 4:
+                message = 'Четвер'
+                break;
+            case 5:
+                message = 'Пятниця'
+
+                break;
+            case 6:
+                message = 'Субота'
+                break;
+        }
+        alert(message)
+    </script>
+</body>
+
+</html>

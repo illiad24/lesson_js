@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        Задача 8. Задаємо користувачу задачу з додавання двох чисел. Визначити скільки секунд було використано для розв’язання задачі.
+    </h2>
+    <div class="time"></div>
+    <script>
+        const time = document.querySelector('.time');
+
+        function getRandNum(min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1))
+        }
+        function example() {
+            let num1 = getRandNum(1, 100)
+            let num2 = getRandNum(1, 100)
+            let start = new Date()
+            let answer = num1 + num2
+            let answerUser = parseInt(prompt(`${num1} + ${num2}`))
+            let end = new Date()
+            let elapsedTime = (end - start) / 1000
+            if (answer !== answerUser) example()
+            else
+                time.textContent = `Час виконання: ${elapsedTime} секунд`;
+        }
+        example()
+    </script>
+</body>
+
+</html>

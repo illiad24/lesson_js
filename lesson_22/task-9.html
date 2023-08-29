@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        Задача 10 . Дано дата виробництва йогурта (вводимо рік, місяць, день)
+        та кількість днів придатності. Визначити чи є він придатним на даний момент.
+    </h2>
+    <div class="container">
+
+    </div>
+    <script>
+        class Expiration {
+            expirationCheck() {
+                const expirationDateStr = this.inp.value;
+
+                const expirationDays = parseInt(this.inp2.value);
+
+                if (expirationDateStr && !isNaN(expirationDays)) {
+                    const currentDate = new Date();
+                    const expirationDate = new Date(expirationDateStr)
+                    expirationDate.setDate(expirationDate.getDate() + expirationDays);
+                    console.log(expirationDate)
+
+                    if (currentDate <= expirationDate && currentDate <= new Date(expirationDate)) {
+                        this.result.innerText = 'Продукт ще придатний';
+                    } else {
+                        this.result.innerText = 'Продукт непридатний';
+                    }
+                } else {
+                    this.result.innerText = '';
+                }
+            }
+            render(containerName) {
+                let wrap = document.createElement('div')
+                let label = document.createElement('label')
+                label.innerText = 'Введіть термін придатності'
+                wrap.append(label)
+                let inp = document.createElement('input')
+                inp.setAttribute('type', 'date')
+                this.inp = inp
+                this.inp.oninput = this.expirationCheck.bind(this)
+                wrap.append(inp)
+                //========================================================================================================================================================
+                let wrap2 = document.createElement('div')
+                let label2 = document.createElement('label')
+                label2.innerText = 'Введіть кількість днів придатності'
+                wrap2.append(label2)
+                let inp2 = document.createElement('input')
+                inp2.setAttribute('type', 'number')
+                this.inp2 = inp2
+                this.inp2.oninput = this.expirationCheck.bind(this)
+
+                wrap2.append(this.inp2)
+                //========================================================================================================================================================
+                this.result = document.createElement('div')
+                wrap.append(this.result)
+                if (containerName) {
+                    document.querySelector(containerName).append(wrap2)
+                    document.querySelector(containerName).append(wrap)
+                }
+            }
+        }
+        let r1 = new Expiration()
+        r1.render('.container')
+    </script>
+</body>
+
+</html>
