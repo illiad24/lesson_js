@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+
+    </h2>
+
+    <script>
+        //         let str = 'My disk Mobey1222 34 84 time45'
+
+        // console.log(str.substr(3, 4))
+        // console.log(str.substring(3, 8))
+        // console.log(str.slice(3))
+        //========================================================================================================================================================
+
+        // Задача. Отримати першу і другу половину введеного рядка
+        // let userLine = prompt('Введіть рядок')
+        // let firstPart = userLine.substring(0, userLine.length / 2)
+        // let secondPart = userLine.slice(userLine.length / 2)
+        // console.log(firstPart)
+        // console.log(secondPart)
+        //========================================================================================================================================================
+        // Задача. Отримати рядок, у якому немає першого і останнього символу
+
+        // function removeFirstAndLast(str) {
+        //     if (str.length <= 2) {
+        //         return ""
+        //     }
+
+        //     return str.slice(1, -1)
+        // }
+        // let userLine = prompt('Введіть рядок')
+
+        // const result = removeFirstAndLast(userLine)
+
+        // console.log(result)
+        //========================================================================================================================================================
+
+        // Задача. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+
+        // let number = ' +380985463214'
+        // if (number.trim().startsWith('+380')) alert('yes')
+        // else alert('no')
+        //========================================================================================================================================================
+        // Задача. Користувач вводить прізвище та ім’я в одному рядку через пробіл. Замінити пробіл на дефіс.
+        // let userMessage = prompt('вводить прізвище та ім’я')
+        // userMessage = userMessage.replace(' ', '-')
+        // console.log(userMessage)
+        //========================================================================================================================================================
+        // Задача. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати
+        // у форматі «день/місяць/рік»
+
+        // let userDate = prompt('«день.місяць.рік»')
+        // userDate = userDate.replaceAll('.', '/')
+        // console.log(userDate)
+        //========================================================================================================================================================
+
+        // Задача. Дано масив цін. Сформувати 2 окремих рядки з цін розділених через кому які більші за 1000 і менші за 1000.
+
+        // function priceSplit(prices) {
+        //     let priceMoreThan1000 = []
+        //     let priceSmallThan1000 = []
+        //     for (const price of prices) {
+        //         if (price > 1000) priceMoreThan1000.push(price)
+        //         else priceSmallThan1000.push(price)
+        //     }
+        //     priceMoreThan1000.join(',')
+        //     priceSmallThan1000.join(',')
+        //     return [priceMoreThan1000, priceSmallThan1000]
+        // }
+        // let prices = [321, 212, 5, 6, 48444, 9844, 1001]
+        // console.log(priceSplit(prices))
+        //========================================================================================================================================================
+        // Задача. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи є це день вихідним
+
+        // function isWeekend(input) {
+        //     let exp = /[06sunsat]/ig
+        //     if (exp.test(input)) alert('вихідний')
+        //     else alert('Робочий')
+        // }
+        // let userInput = prompt('номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»')
+        // let dayType = isWeekend(userInput)
+        // function isWeekend(input) {
+        //     let exp = /(0|6|sun|sat)/ig
+        //     if (exp.test(input)) alert('вихідний')
+        //     else alert('Робочий')
+        // }
+        // let userInput = prompt('номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»')
+        // let dayType = isWeekend(userInput)
+        //========================================================================================================================================================
+        // let str = 'Anna is 10, and she has 20 friends'
+        // if (/[0-9]/.test(str)) {
+        //     let didgits = str.match(/[0-9]/g)
+        //     alert(didgits)
+        //     console.log(didgits)
+        // } else alert('mo digits')
+        //========================================================================================================================================================
+        // let str =
+        //     'Іван Opel купив , а Оленка Audi. Їх товариш купив Mersedes. На підприємстві ж є Toyota, Nissan та Volkswagen'
+        // if (/(BMW|Audi).test(str)/ig) {
+        //     let autoList = str.match(/(Nissan|Toyota|Volkswagen)/g)
+        //     alert(autoList)
+        // }
+    </script>
+</body>
+
+</html>
