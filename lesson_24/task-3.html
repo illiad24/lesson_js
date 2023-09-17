@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 3 </h1>
+    <h2>
+        Задача 7. Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін).
+        Підрахувати для кожного клієнта кількість відвідувань.
+    </h2>
+    <script>
+        function login() {
+            let logins = [
+                { name: 'mari', login: 54, count: 0 },
+                { name: 'olga', login: 51, count: 0 },
+                { name: 'alex', login: 20, count: 0 },
+            ]
+
+            let loginsSave = JSON.parse(localStorage.getItem('logins'))
+
+            if (!loginsSave) {
+                localStorage.setItem('logins', JSON.stringify(logins))
+                loginsSave = logins
+            }
+
+            let userLogin = parseInt(prompt('Введіть логін'))
+
+            for (let i = 0; i < loginsSave.length; i++) {
+                if (userLogin === loginsSave[i].login) {
+                    document.write(`hi ${loginsSave[i].name}.<br> Відвідувань: ${++loginsSave[i].count}`)
+
+                    localStorage.setItem('logins', JSON.stringify(loginsSave))
+                    break
+                } else if (i === loginsSave.length - 1) {
+                    alert('Error: логін не знайдено')
+                }
+            }
+            return loginsSave
+        }
+        function addLogin(params) {
+            let userName = parseInt(prompt('Введіть нове імя'))
+            let userLogin = parseInt(prompt('Введіть новий login'))
+            params.push({ name: userName, login: userLogin, count: 0 })
+        }
+        function addLogin(params) {
+            let userName = prompt('Введіть нове ім\'я')
+            let userLogin = parseInt(prompt('Введіть новий login'))
+            params.push({ name: userName, login: userLogin, count: 0 })
+            localStorage.setItem('logins', JSON.stringify(params))
+        }
+
+        window.onload = function () {
+            if (confirm('Додати юзера'))
+                addLogin(login())
+            login()
+        }
+    </script>
+</body>
+
+</html>

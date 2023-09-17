@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>task 4 </h1>
+    <h2>
+        Задача 8. Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних факультетів, та кількість студентів кожного з курсів.
+    </h2>
+    <script>
+        let students = [
+            { name: 'ivan', courseNum: 2, faculty: 'economics' },
+            { name: 'Olga', courseNum: 1, faculty: 'economics' },
+            { name: 'peter', courseNum: 3, faculty: 'music' },
+            { name: 'Illia', courseNum: 3, faculty: 'law' },
+            { name: 'alex', courseNum: 4, faculty: 'music' },
+        ]
+        let differentFaculties = new Set(students.map(el => el.faculty))
+        document.write(`кількість різних факультетів ${differentFaculties.size} <br>`)
+        let map = new Map()
+        let studentFaculty = students.map(el => el.faculty)
+        for (const student of studentFaculty) {
+            map.set(student, (map.get(student) ?? 0) + 1)
+        }
+        map.forEach((value, key) => {
+            document.write(`${key} - ${value}<br>`)
+        });
+    </script>
+</body>
+
+</html>

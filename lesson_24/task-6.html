@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .column {
+            display: grid;
+            justify-content: start;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 6 </h1>
+    <h2>
+        Задача 10 Дано два списки прізвищ студентів, що відвідують гуртки з математики і історії.
+        Підрахувати скільки студентів з гуртка з історії також відвідують гурток з математики.
+        Також підрахувати скільки всього студентів відвідують хоча б один гурток.
+    </h2>
+
+
+    <script>
+        // Масив з прізвищами студентів, які відвідують гурток з математики
+        let mathStudents = ["Іванов", "Федоришин", "Усик", "Козлов", "Шевченко", "Павленко"]
+        // Масив з прізвищами студентів, які відвідують гурток з історії
+        let historyStudents = ["Коваленко", "Шевченко", "Бондаренко", "Григоренко", "Павленко", "Мельникова"]
+        let allStudents = mathStudents.concat(historyStudents)
+        // console.log(allStudents)
+        // 1 варіант
+        // document.write(` ${allStudents.length - new Set(allStudents).size} - студенти з гуртка з історії також відвідують гурток з математики<br>`)
+        document.write(` ${new Set(allStudents).size} - студенти відвідують хоча б один гурток <br>`)
+        // 2 варінт
+        let doubleWorkshop = new Map();
+        for (const student of mathStudents) {
+            doubleWorkshop.set(student, (doubleWorkshop.get(student) ?? 0) + 1);
+        }
+        for (const student of historyStudents) {
+            doubleWorkshop.set(student, (doubleWorkshop.get(student) ?? 0) + 1);
+        }
+        doubleWorkshop.forEach((value, key) => {
+            if (value != 2) {
+                doubleWorkshop.delete(key);
+            }
+        });
+        document.write(`${doubleWorkshop.size} - студенти з гуртка з історії також відвідують гурток з математики<br>`)
+
+    </script>
+</body>
+
+</html>

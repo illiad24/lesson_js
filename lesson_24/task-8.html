@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task </h1>
+    <h2>
+        Задача 12. Зберігати у пам’яті список справ, які користувачу треба виконати (зберігати у localStorage).
+
+        Періодично випадковим чином вибирати якусь з справ і виводити користувачу (з використанням confirm).
+        Якщо користувач натискає на «Ок», то видаляти цю задачу.
+    </h2>
+    <script>
+        const jobs = {
+            job1: 'sing',
+            job2: 'dance',
+            job3: 'paint',
+            job4: 'cook',
+            job5: 'program',
+        }
+        function getRandNum(min, max) {
+            return min + Math.floor(Math.random() * (max - min + 1))
+        }
+
+        function remember(jobs) {
+            let copyJobs = { ...jobs }
+            let saveJobs = JSON.parse(localStorage.getItem('jobs'))
+            if (!saveJobs) {
+                localStorage.setItem('jobs', JSON.stringify(copyJobs))
+            }
+            for (let i = 0; i < Object.keys(saveJobs).length; i++) {
+                console.log(Object.keys(saveJobs).length)
+                let randNum = getRandNum(0, Object.keys(saveJobs).length - 1)
+                let randJob = Object.keys(saveJobs)[randNum]
+                let jobValue = saveJobs[randJob]
+                if (confirm(jobValue)) {
+                    delete saveJobs[randJob]
+                    localStorage.setItem('jobs', JSON.stringify(saveJobs));
+                }
+                if (Object.keys(saveJobs).length === 0) {
+                    alert('jobs comleted')
+                    localStorage.removeItem('jobs')
+                }
+            }
+        }
+        remember(jobs)
+    </script>
+</body>
+
+</html>

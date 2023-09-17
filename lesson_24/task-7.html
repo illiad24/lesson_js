@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .counter {
+            font-size: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>task 7 </h1>
+    <h2>
+        Задача 11. Користувач може змінювати колір фону, що вибирає користувач з використанням
+        Зберігати цей колір і відновлювати при наступному відкритті.
+        Також зберігати і відображати кількість змін протягом одного сеансу.
+
+    </h2>
+    <input type="color" id="color">
+    <div class="counter">0</div>
+    <script>
+        const colorInput = document.querySelector("#color")
+        const counter = document.querySelector(".counter")
+        function changes() {
+            let colorInputValue = colorInput.value
+            document.body.style.backgroundColor = colorInputValue
+            localStorage.setItem('bgColor', colorInputValue)
+            let counterValue = parseInt(counter.innerText)
+            counterValue += 1
+            counter.innerText = counterValue
+            sessionStorage.setItem('counter', counterValue)
+        }
+        window.onload = function () {
+            colorInput.oninput = changes
+            const savedColor = localStorage.getItem('bgColor')
+            const saveCounter = sessionStorage.getItem('counter')
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor
+                colorInput.value = savedColor
+            } else
+                document.body.style.backgroundColor = '#ffffff'
+            if (saveCounter) counter.innerText = saveCounter
+        }
+    </script>
+</body>
+
+</html>

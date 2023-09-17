@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>task 1 </h1>
+    <h2>
+        Задача 5. Дано список з віком учнів. Підрахувати скільки разів кожне значення зустрічається у списку і максимальне.
+    </h2>
+    <script>
+        let arrAges = [12, 8, 15, 15, 14, 16, 13, 12, 17]
+        let map = new Map()
+        for (const age of arrAges) {
+            map.set(age, (map.get(age) ?? 0) + 1)
+        }
+        map.forEach((value, key) => {
+            document.write(`${key}-${value}<br>`)
+        })
+        document.write(`максимальний вік - ${Math.max(...arrAges)}<br>`)
+    </script>
+</body>
+
+</html>
